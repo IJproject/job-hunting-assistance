@@ -25,4 +25,9 @@ class ApplicantCompany extends Model
     {
         return $this->hasMany(ApplicantCompanyQa::class);
     }
+    
+    public function selections(): HasMany
+    {
+        return $this->hasMany(Selection::class);
+    }
 }

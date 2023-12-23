@@ -16,12 +16,13 @@ class UserController extends Controller
 {
     public function index ()
     {
-        return Inertia::render('User/Index');
-    }
-
-    public function show ()
-    {
-        return Inertia::render('User/Show');
+        $auth_user = Auth::user()->only(['id', 'name', 'email']);
+        // dd(ApplicantCompany::get());
+        $applicant_companies = ApplicantCompany::where('user_id', $auth_user['id'])->with('company')->get();
+        return Inertia::render('User/Index', [
+            'authUser' => $auth_user,
+            'applicantCompanies' => $applicant_companies,
+        ]);
     }
 
     public function edit ()
@@ -32,5 +33,12 @@ class UserController extends Controller
     public function update ()
     {
         return Inertia::render('User/Edit');
+    }
+
+    public function applicant_company (ApplicantCompany $applicant_company)
+    {
+        return Inertia::render('User/ApplicantCompany/Show', [
+            'applicantCompany' => $applicant_company->load(['applicant_company_qas', 'selections']),
+        ]);
     }
 }

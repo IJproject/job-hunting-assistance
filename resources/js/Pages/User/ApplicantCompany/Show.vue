@@ -2,20 +2,23 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SectionContainer from "@/Components/common/SectionContainer.vue";
 
-// const props = defineProps({
-//     applicantCompany: Object,
-// });
+const props = defineProps({
+    applicantCompany: Object,
+});
 
-// console.log(props.applicantCompany);
+console.log(props.applicantCompany);
 </script>
 
 <template>
     <AuthenticatedLayout>
-        <SectionContainer title="プロフィール">
+        <SectionContainer title="会社情報">
             <div>プロフィールのやつはこっち</div>
         </SectionContainer>
-        <SectionContainer title="自己分析">
+        <SectionContainer title="選考状況">
             <div>cさcvさあ</div>
+        </SectionContainer>
+        <SectionContainer title="面接対策">
+            <div>cas</div>
         </SectionContainer>
     </AuthenticatedLayout>
 </template>

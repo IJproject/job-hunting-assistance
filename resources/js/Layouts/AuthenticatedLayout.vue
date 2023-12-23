@@ -100,9 +100,4 @@ const logout = () => {
             </v-container>
         </v-main>
     </v-app>
-    <!-- <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-            Log Out
-        </ResponsiveNavLink> -->
-
-    <!-- Page Content -->
 </template>
