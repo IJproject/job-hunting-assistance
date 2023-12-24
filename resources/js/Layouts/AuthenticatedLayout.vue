@@ -12,6 +12,12 @@ const navigationItems = [
     },
     {
         id: '2',
+        title: '会社一覧',
+        icon: 'mdi-office-building',
+        url: '/company'
+    },
+    {
+        id: '3',
         title: 'ブログ',
         icon: 'mdi-post-outline',
         url: '/blog'

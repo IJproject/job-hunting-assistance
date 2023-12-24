@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('applicant_company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->integer('selection_step_state');
-            $table->dateTime('date')->nullable();
+            $table->date('date')->nullable();
+            $table->string('time')->nullable();
             $table->string('interviewer')->nullable();
             $table->text('memo')->nullable();
             $table->timestamps();

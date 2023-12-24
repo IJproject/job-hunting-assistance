@@ -3,7 +3,8 @@ import { ref } from "vue";
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SectionContainer from "@/Components/common/SectionContainer.vue";
-import CompanyListItem from "@/Components/domain/user/CompanyListItem.vue";
+import UserInfoCard from "@/Components/domain/user/index/UserInfoCard.vue";
+import CompanyListItem from "@/Components/domain/user/index/CompanyListItem.vue";
 
 const props = defineProps({
     authUser: Object,
@@ -18,8 +19,8 @@ console.log(props.applicantCompanies);
 
 <template>
     <AuthenticatedLayout>
-        <SectionContainer>
-            <div>プロフィールのやつはこっち</div>
+        <SectionContainer title="プロフィール">
+            <UserInfoCard :authUser="authUser" :applicantCompaniesCount="applicantCompanies.length" />
         </SectionContainer>
         <SectionContainer title="選考中企業">
             <v-expansion-panels v-model="panel" multiple>

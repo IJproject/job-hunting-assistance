@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('user', UserController::class)->only([
-        'index', 'edit', 'update'
-    ]);
-    Route::get('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company'])->name('user.applicant_company');
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+    
+    Route::get('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_show'])->name('user.applicant_company.show');
+
+    Route::get('/company', [CompanyController::class, 'index'])->name('company.index');
 });
 
 require __DIR__.'/auth.php';

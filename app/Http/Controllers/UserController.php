@@ -14,7 +14,7 @@ use App\Models\ApplicantCompanyQa;
 
 class UserController extends Controller
 {
-    public function index ()
+    public function index()
     {
         $auth_user = Auth::user()->only(['id', 'name', 'email']);
         // dd(ApplicantCompany::get());
@@ -25,20 +25,22 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit ()
+    public function show(User $user)
+    {
+        return Inertia::render('User/Show', [
+            'authUser' => $user->load(['user_qas'])
+        ]);
+    }
+
+    public function update()
     {
         return Inertia::render('User/Edit');
     }
 
-    public function update ()
-    {
-        return Inertia::render('User/Edit');
-    }
-
-    public function applicant_company (ApplicantCompany $applicant_company)
+    public function applicant_company_show(ApplicantCompany $applicant_company)
     {
         return Inertia::render('User/ApplicantCompany/Show', [
-            'applicantCompany' => $applicant_company->load(['applicant_company_qas', 'selections']),
+            'applicantCompany' => $applicant_company->load(['company', 'applicant_company_qas', 'selections']),
         ]);
     }
 }

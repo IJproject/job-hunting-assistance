@@ -2,9 +2,7 @@
 import { selectionStatuses } from "@/constants";
 
 defineProps({
-    company: {
-        type: Object,
-    },
+    company: Object
 });
 </script>
 
@@ -25,16 +23,21 @@ defineProps({
                         ]
                     }}</v-chip
                 >
+                <v-spacer></v-spacer>
                 <v-sheet class="align-self-center"
-                    >Flex item 2</v-sheet
+                    >{{ company.company.name }}</v-sheet
                 >
                 <v-spacer></v-spacer>
-                <v-btn
+            </div>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+            {{ company.memo }}
+            <v-btn
                     color="primary"
-                    variant="tonal"
+                    variant="flat"
                     :href="
                         route(
-                            'user.applicant_company',
+                            'user.applicant_company.show',
                             company.id
                         )
                     "
@@ -43,10 +46,6 @@ defineProps({
                 >
                     詳細
                 </v-btn>
-            </div>
-        </v-expansion-panel-title>
-        <v-expansion-panel-text>
-            {{ company.memo }}
         </v-expansion-panel-text>
     </v-expansion-panel>
 </template>
