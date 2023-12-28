@@ -2,12 +2,17 @@
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-import FormDialog from "@/Components/common/FormDialog.vue";
+import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
 import { selectionSteps } from "@/constants";
 import { changeObjectForVSelect } from "@/functions";
 
+const props = defineProps({
+    applicantCompanyId: Number,
+});
+
 const createSelectionForm = useForm({
+    applicant_company_id: props.applicantCompanyId,
     selection_step_state: null,
     date: null,
     time: null,
@@ -16,7 +21,16 @@ const createSelectionForm = useForm({
 });
 const createSelectionDialogOpen = ref(false);
 const createSelection = () => {
-    console.log(createSelectionForm);
+    createSelectionForm.selection_step_state = Number(createSelectionForm.selection_step_state)
+    createSelectionForm.post(route('user.applicant_company.selection.store'), {
+        onSuccess: () => {
+            createSelectionDialogOpen.value = false;
+            createSelectionForm.reset();
+        },
+        onError: (error) => {
+            console.log(error);
+        }
+    })
 };
 </script>
 

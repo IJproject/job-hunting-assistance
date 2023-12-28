@@ -2,18 +2,36 @@
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-import FormDialog from "@/Components/common/FormDialog.vue";
+import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
 import { aboutUserQuestions } from "@/constants";
-import { changeObjectForVSelect } from "@/functions";
+import { changeObjectForVSelect, removeAlreadyExistQa } from "@/functions";
+
+const props = defineProps({
+    alreadyExistQaNumber: Array,
+    authUserId: Number,
+});
+
+const qaList = removeAlreadyExistQa(props.alreadyExistQaNumber, aboutUserQuestions)
 
 const createUserQaForm = useForm({
+    user_id: props.authUserId,
     about_user_quetion_state: null,
     answer: null,
 });
 const createUserQaDialogOpen = ref(false);
 const createUserQa = () => {
-    console.log(createUserQaForm);
+    if(!props.alreadyExistQaNumber.includes(Number(createUserQaForm.about_user_quetion_state))){
+        createUserQaForm.post(route('user.user_qa.store'), {
+            onSuccess: () => {
+                createUserQaDialogOpen.value = false;
+                createUserQaForm.reset();
+            },
+            onError: (error) => {
+                console.log(error);
+            }
+        })
+    } 
 };
 </script>
 
@@ -35,7 +53,7 @@ const createUserQa = () => {
                 <v-select
                     label="質問"
                     v-model="createUserQaForm.about_user_quetion_state"
-                    :items="changeObjectForVSelect(aboutUserQuestions)"
+                    :items="changeObjectForVSelect(qaList)"
                     item-title="label"
                     item-value="id"
                     variant="outlined"

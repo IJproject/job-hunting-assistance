@@ -2,14 +2,16 @@
 import { ref } from "vue";
 import { Link, useForm } from "@inertiajs/vue3";
 
-import FormDialog from "@/Components/common/FormDialog.vue";
+import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
 import { industries, jobs, selectionStatuses } from "@/constants";
-import { changeObjectForVSelect } from "@/functions";
+import { changeObjectForVSelect, getKeyByValue } from "@/functions";
 
 const props = defineProps({
     applicantCompany: Object,
 });
+
+const updateCompanyDialogOpen = ref(false);
 
 // 会社情報の更新(変更がない項目は文字列情報が入っている)
 const updateCompanyForm = useForm({
@@ -19,14 +21,30 @@ const updateCompanyForm = useForm({
     salary: props.applicantCompany.salary,
     memo: props.applicantCompany.memo,
 });
-const updateCompanyDialogOpen = ref(false);
+
+const deleteCompanyForm = useForm({
+    id: props.applicantCompany.id,
+})
+
 const updateCompany = () => {
-    console.log(updateCompanyForm.selection_status_state);
+    // updateCompanyForm.selection_status_state = await getKeyByValue(selectionStatuses, updateCompanyForm.selection_status_state);
+    // updateCompanyForm.industry_state = await getKeyByValue(industries, updateCompanyForm.industry_state);
+    // updateCompanyForm.job_state = await getKeyByValue(jobs, updateCompanyForm.job_state);
+
+    updateCompanyForm.put(route('user.applicant_company.update', props.applicantCompany.id),  {
+        onSuccess: () => {
+            console.log('success')
+            updateCompanyDialogOpen.value = false;
+        },
+        onError: () => {
+            console.log('error');
+        },
+    })
 };
 
 const deleteCompany = () => {
     if(confirm("本当に削除しますか？")) {
-        console.log("削除");
+        deleteCompanyForm.delete(route('user.applicant_company.destroy'));
     }
 };
 </script>
@@ -110,7 +128,6 @@ const deleteCompany = () => {
                     :items="changeObjectForVSelect(industries)"
                     item-title="label"
                     item-value="id"
-                    return-object
                     variant="outlined"
                     color="primary"
                 ></v-select>
@@ -120,7 +137,6 @@ const deleteCompany = () => {
                     :items="changeObjectForVSelect(jobs)"
                     item-title="label"
                     item-value="id"
-                    return-object
                     variant="outlined"
                     color="primary"
                 ></v-select>

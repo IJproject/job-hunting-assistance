@@ -2,14 +2,20 @@
 import { ref, watch } from "vue";
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import SectionContainer from "@/Components/common/SectionContainer.vue";
-import Pagination from "@/Components/common/Pagination.vue";
+import SectionContainer from "@/Components/common/surfaces/SectionContainer.vue";
+import CreateCompanyButton from "@/Components/domain/company/CreateCompanyButton.vue";
+import SearchCompanyForm from "@/Components/domain/company/SearchCompanyForm.vue";
+import CompanyListItem from "@/Components/domain/company/CompanyListItem.vue";
+import Pagination from "@/Components/common/feedbacks/Pagination.vue";
 
 const props = defineProps({
     companies: Array,
+    search_word: String,
 });
 
-
+const searchCompany = () => {
+    console.log("searchCompany");
+};
 
 console.log(props.companies.data);
 </script>
@@ -18,51 +24,12 @@ console.log(props.companies.data);
     <AuthenticatedLayout>
         <SectionContainer title="会社一覧">
             <template v-slot:createButton>
-                <v-btn
-                    color="primary"
-                    variant="flat"
-                >
-                    企業登録
-                </v-btn>
+                <CreateCompanyButton />
             </template>
-            <v-sheet>
-                <v-text-field
-                    append-inner-icon="mdi-magnify"
-                    label="会社名"
-                    variant="solo"
-                    placeholder="企業名を入力してください"
-                    @click:append-inner="searchCompany"
-                ></v-text-field>
-            </v-sheet>
+            <SearchCompanyForm :search_word="search_word" />
             <v-row>
                 <template v-for="company in companies.data" :key="company.id">
-                    <v-col cols='12' sm="6" md="4" lg="3">
-                        <v-card elevation="4">
-                            <v-card-text class="pt-2 pb-6">
-                                <v-row>
-                                    <v-col cols="auto" class="text-h5 align-self-center">
-                                        {{ company.name }}
-                                    </v-col>
-                                    <v-spacer></v-spacer>
-                                    <v-col cols="auto">
-                                        <v-btn
-                                            color="primary"
-                                            icon="mdi-pencil"
-                                            variant="text"
-                                            
-                                        >
-                                            
-                                        </v-btn>
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col cols="auto" class="py-0 me-auto">
-                                        <a :href="company.hp_url">{{ company.hp_url }}</a>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-                        </v-card>
-                    </v-col>
+                    <CompanyListItem :company="company" />
                 </template>
             </v-row>
         </SectionContainer>

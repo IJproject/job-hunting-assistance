@@ -34,10 +34,23 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
     
     Route::get('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_show'])->name('user.applicant_company.show');
+    Route::put('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_update'])->name('user.applicant_company.update');
+    Route::delete('/user/applicant_company/delete', [UserController::class, 'applicant_company_destroy'])->name('user.applicant_company.destroy');
+
+    Route::post('/user/applicant_company/selection', [UserController::class, 'selection_store'])->name('user.applicant_company.selection.store');
+    Route::delete('/user/applicant_company/selection/delete', [UserController::class, 'selection_destroy'])->name('user.applicant_company.selection.destroy');
+
+    Route::post('/user/applicant_company/qa', [UserController::class, 'company_qa_store'])->name('user.applicant_company.company_qa.store');
+    Route::delete('/user/applicant_company/qa/delete', [UserController::class, 'company_qa_destroy'])->name('user.applicant_company.company_qa.destroy');
+
+    Route::post('/user/user_qa', [UserController::class, 'user_qa_store'])->name('user.user_qa.store');
+    Route::delete('/user/user_qa/delete', [UserController::class, 'user_qa_destroy'])->name('user.user_qa.destroy');
 
     Route::get('/company', [CompanyController::class, 'index'])->name('company.index');
+    Route::post('/company', [CompanyController::class, 'store'])->name('company.store');
 });
 
 require __DIR__.'/auth.php';

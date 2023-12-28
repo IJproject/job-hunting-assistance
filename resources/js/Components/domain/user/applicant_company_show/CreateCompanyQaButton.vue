@@ -2,18 +2,40 @@
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-import FormDialog from "@/Components/common/FormDialog.vue";
+import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
 import { aboutCompanyQuestions } from "@/constants";
-import { changeObjectForVSelect } from "@/functions";
+import { changeObjectForVSelect, removeAlreadyExistQa } from "@/functions";
+
+const props = defineProps({
+    applicantCompanyId: Number,
+    alreadyExistQaNumber: Array,
+});
+
+const qaList = removeAlreadyExistQa(props.alreadyExistQaNumber, aboutCompanyQuestions)
+
+console.log(props)
 
 const createCompanyQaForm = useForm({
+    applicant_company_id: props.applicantCompanyId,
     about_company_quetion_state: null,
     answer: null,
 });
+
 const createCompanyQaDialogOpen = ref(false);
+
 const createCompanyQa = () => {
-    console.log(createCompanyQaForm);
+    if(!props.alreadyExistQaNumber.includes(Number(createCompanyQaForm.about_company_quetion_state))){
+        createCompanyQaForm.post(route('user.applicant_company.company_qa.store'), {
+            onSuccess: () => {
+                createCompanyQaDialogOpen.value = false;
+                createCompanyQaForm.reset();
+            },
+            onError: (error) => {
+                console.log(error);
+            }
+        })
+    } 
 };
 </script>
 
@@ -35,7 +57,7 @@ const createCompanyQa = () => {
                 <v-select
                     label="質問"
                     v-model="createCompanyQaForm.about_company_quetion_state"
-                    :items="changeObjectForVSelect(aboutCompanyQuestions)"
+                    :items="changeObjectForVSelect(qaList)"
                     item-title="label"
                     item-value="id"
                     variant="outlined"

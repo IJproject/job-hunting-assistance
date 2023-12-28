@@ -11,6 +11,20 @@ class ApplicantCompany extends Model
 {
     use HasFactory;
 
+    protected $attributes = [
+        'selection_status_state' => 1,
+    ];
+
+    protected $fillable = [
+        'user_id',
+        'company_id',
+        'industry_state',
+        'job_state',
+        'selection_status_state',
+        'memo',
+        'salary',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

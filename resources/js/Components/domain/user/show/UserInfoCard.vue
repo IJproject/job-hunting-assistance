@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-import FormDialog from "@/Components/common/FormDialog.vue";
+import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
 const props = defineProps({
     authUser: Object,
@@ -12,12 +12,24 @@ const updateUserForm = useForm({
     name: props.authUser.name,
     email: props.authUser.email,
     current_password: null,
-    new_password: null,
-    new_password_confirmation: null,
+    password: null,
+    password_confirmation: null,
 });
+
 const updateUserDialogOpen = ref(false);
+
 const updateUser = () => {
-    console.log(updateUserForm);
+    updateUserForm.put(route("user.update", props.authUser.id), {
+        onSuccess: () => {
+            updateUserDialogOpen.value = false;
+            updateUserForm.current_password = null;
+            updateUserForm.password = null;
+            updateUserForm.password_confirmation = null;
+        },
+        onError: (error) => {
+            console.log(error)
+        },
+    })
 };
 </script>
 
@@ -81,7 +93,7 @@ const updateUser = () => {
                 <v-text-field
                     label="新しいパスワード"
                     type="password"
-                    v-model="updateUserForm.new_password"
+                    v-model="updateUserForm.password"
                     variant="outlined"
                     color="primary"
                     hint="パスワードを変更したい場合は入力してください。"
@@ -91,7 +103,7 @@ const updateUser = () => {
                 <v-text-field
                     label="新しいパスワードの確認"
                     type="password"
-                    v-model="updateUserForm.new_password_confirmation"
+                    v-model="updateUserForm.password_confirmation"
                     variant="outlined"
                     color="primary"
                 ></v-text-field>

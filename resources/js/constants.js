@@ -34,6 +34,16 @@ export const selectionStatuses = {
     100: 'その他',
 }
 
+export const selectionStatusColors = {
+    1: 'blue',
+    2: 'green',
+    3: 'yellow',
+    4: 'orange',
+    5: 'error',
+    6: 'error-lighten',
+    100: 'gray',
+}
+
 export const selectionSteps = {
     1: 'カジュアル面談',
     2: '面談',
@@ -48,6 +58,23 @@ export const selectionSteps = {
     11: '課題',
     12: 'テスト',
     100: 'その他',
+}
+
+export const selectionStepColors = {
+    1: 'blue',
+    2: 'blue',
+    3: 'blue',
+    4: 'blue',
+    5: 'blue',
+    6: 'blue',
+    7: 'blue',
+    8: 'blue',
+    9: 'blue',
+    10: 'blue',
+    11: 'blue',
+    12: 'blue',
+    100: 'gray',
+
 }
 
 export const aboutUserQuestions = {

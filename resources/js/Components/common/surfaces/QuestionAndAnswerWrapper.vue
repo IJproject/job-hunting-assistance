@@ -7,7 +7,7 @@ import { aboutCompanyQuestions } from "@/constants";
         <v-sheet>
             <slot name="question" />
         </v-sheet>
-        <v-divider thickness="2" class="border-opacity-100 my-3"></v-divider>
+        <v-divider thickness="2" class="my-3"></v-divider>
         <v-sheet>
             <slot name="answer" />
         </v-sheet>

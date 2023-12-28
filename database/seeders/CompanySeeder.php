@@ -15,16 +15,22 @@ class CompanySeeder extends Seeder
     {
         DB::table('companies')->insert([
             [
-                'name' => 'Google',
-                'hp_url' => 'https://www.google.com/',
+                'name' => 'レバテック株式会社',
+                'corporation_number' => '6010401114887',
+                'hp_url' => 'https://levtech.jp//',
+                'location' => '東京都渋谷区渋谷２丁目２４番１２号',
             ],
             [
-                'name' => 'Amazon',
-                'hp_url' => 'https://www.amazon.co.jp/',
+                'name' => '楽天グループ株式会社',
+                'corporation_number' => '9010701020592',
+                'hp_url' => 'https://corp.rakuten.co.jp/',
+                'location' => '東京都世田谷区玉川１丁目１４番１号',
             ],
             [
-                'name' => 'Apple',
+                'name' => 'AppleJapan合同会社',
+                'corporation_number' => '3011103003992',
                 'hp_url' => 'https://www.apple.com/jp/',
+                'location' => '東京都港区六本木６丁目１０番１号六本木ヒルズ',
             ]
         ]);
     }

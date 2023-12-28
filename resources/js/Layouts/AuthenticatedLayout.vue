@@ -12,7 +12,7 @@ const navigationItems = [
     },
     {
         id: '2',
-        title: '会社一覧',
+        title: '企業一覧',
         icon: 'mdi-office-building',
         url: '/company'
     },
@@ -66,7 +66,7 @@ const logout = () => {
                     ></v-btn>
                 </template>
                 <template v-slot:prepend>
-                    <v-avatar class="my-1.5" size="36">
+                    <v-avatar class="my-2" size="36">
                         <v-img
                             src="https://randomuser.me/api/portraits/men/85.jpg"
                             alt="ユーザーの写真"
@@ -97,7 +97,7 @@ const logout = () => {
                 >
                 </v-list-item>
             </v-list>
-            <template v-slot:append> </template>
+            <template v-slot:append></template>
         </v-navigation-drawer>
 
         <v-main>

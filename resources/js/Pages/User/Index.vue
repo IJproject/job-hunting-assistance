@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import SectionContainer from "@/Components/common/SectionContainer.vue";
+import SectionContainer from "@/Components/common/surfaces/SectionContainer.vue";
 import UserInfoCard from "@/Components/domain/user/index/UserInfoCard.vue";
 import CompanyListItem from "@/Components/domain/user/index/CompanyListItem.vue";
 

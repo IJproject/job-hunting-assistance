@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 .outlined-date-picker {
     border: 1px solid rgba(0, 0, 0, 0.4); /* ボーダーのスタイル */
@@ -13,4 +13,12 @@
     border: none; /* 入力フィールドのボーダーを無効化 */
     outline: none; /* アウトラインを無効化 */
     width: 100%; /* 幅を親要素に合わせる */
+}
+
+.v-input {
+    margin-bottom: 12px;
+}
+
+input:focus {
+    outline: none !important;
 }
