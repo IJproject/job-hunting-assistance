@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -22,7 +21,7 @@ const searchCompany = () => {
             v-model="searchCompanyForm.search_word"
             label="会社名"
             variant="solo"
-            color="primary"
+            color="info"
             placeholder="企業名を入力してください"
             @click:append-inner="searchCompany"
             @keyup.enter="searchCompany"

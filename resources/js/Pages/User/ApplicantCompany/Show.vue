@@ -2,7 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SectionContainer from "@/Components/common/surfaces/SectionContainer.vue";
 import CompanyInfoCard from "@/Components/domain/user/applicant_company_show/CompanyInfoCard.vue";
-import SelectionTimelineCard from "@/Components/domain/user/applicant_company_show/SelectionTimelineCard.vue";
+import SelectionTimelineItem from "@/Components/domain/user/applicant_company_show/SelectionTimelineItem.vue";
 import CreateSelectionButton from "@/Components/domain/user/applicant_company_show/CreateSelectionButton.vue";
 import CompanyQaListItem from "@/Components/domain/user/applicant_company_show/CompanyQaListItem.vue";
 import CreateCompanyQaButton from "@/Components/domain/user/applicant_company_show/CreateCompanyQaButton.vue";
@@ -26,13 +26,12 @@ console.log(props.applicantCompany);
                 <CreateSelectionButton :applicantCompanyId="props.applicantCompany.id" />
             </template>
             <v-timeline side="end">
-                <v-timeline-item
+                <template
                     v-for="selection in applicantCompany.selections"
                     :key="selection.id"
-                    dot-color="primary"
                 >
-                    <SelectionTimelineCard :selection="selection" :applicantCompanyId="props.applicantCompany.id" />
-                </v-timeline-item>
+                    <SelectionTimelineItem :selection="selection" :applicantCompanyId="props.applicantCompany.id" />
+                </template>
             </v-timeline>
             
         </SectionContainer>

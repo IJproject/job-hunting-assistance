@@ -13,14 +13,17 @@ const props = defineProps({
 
 const panel = ref([]);
 
-console.log(props.authUser);
+const underSelectionCount = props.applicantCompanies.filter(
+    (company) => company.selection_status_state === 2
+).length;
+
 console.log(props.applicantCompanies);
 </script>
 
 <template>
     <AuthenticatedLayout>
         <SectionContainer title="プロフィール">
-            <UserInfoCard :authUser="authUser" :applicantCompaniesCount="applicantCompanies.length" />
+            <UserInfoCard :authUser="authUser" :underSelectionCount="underSelectionCount" />
         </SectionContainer>
         <SectionContainer title="選考中企業">
             <v-expansion-panels v-model="panel" multiple>

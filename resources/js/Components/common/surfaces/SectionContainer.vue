@@ -22,6 +22,6 @@ defineProps({
 
 <style>
 #section-title {
-    border-left: 6px solid rgb(var(--v-theme-primary));
+    border-left: 6px solid rgb(var(--v-theme-info));
 }
 </style>

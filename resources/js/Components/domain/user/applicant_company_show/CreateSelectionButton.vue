@@ -36,7 +36,7 @@ const createSelection = () => {
 
 <template>
     <v-btn
-        color="primary"
+        color="info"
         variant="flat"
         @click="createSelectionDialogOpen = true"
     >
@@ -47,7 +47,7 @@ const createSelection = () => {
         :dialogOpen="createSelectionDialogOpen"
         @update:dialogOpen="createSelectionDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-select
                     label="選考ステップ"
@@ -56,7 +56,7 @@ const createSelection = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <div class="outlined-date-picker">
                     <input type="date" v-model="createSelectionForm.date" />
@@ -65,13 +65,13 @@ const createSelection = () => {
                     label="時間"
                     v-model="createSelectionForm.time"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="担当者"
                     v-model="createSelectionForm.interviewer"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-textarea
                     label="選考メモ"
@@ -79,18 +79,18 @@ const createSelection = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="createSelectionDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="createSelection" variant="flat" color="primary"
+            <v-btn @click="createSelection" variant="flat" color="info"
                 >追加</v-btn
             >
         </template>

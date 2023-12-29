@@ -22,3 +22,11 @@
 input:focus {
     outline: none !important;
 }
+
+.v-chip__content {
+    text-align: center;
+}
+
+.v-expansion-panel-text__wrapper {
+    padding: 16px !important;
+}

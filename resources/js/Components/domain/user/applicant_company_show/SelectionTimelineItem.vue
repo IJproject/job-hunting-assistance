@@ -4,7 +4,7 @@ import { useForm } from "@inertiajs/vue3";
 
 import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
-import { selectionSteps } from "@/constants";
+import { selectionSteps, selectionStepColors } from "@/constants";
 import { changeObjectForVSelect, getKeyByValue } from "@/functions";
 
 const props = defineProps({
@@ -49,56 +49,60 @@ const deleteSelection = () => {
 </script>
 
 <template>
-    <v-card elevation="4" class="pa-4 pt-0">
-        <v-card-item>
-            <v-card-title>
-                <v-row>
-                    <v-col cols="auto" class="align-self-center">
-                        <v-chip variant="flat" color="primary">{{
-                            selectionSteps[
-                                selection.selection_step_state
-                            ]
-                        }}</v-chip>
-                    </v-col>
-                    <v-spacer></v-spacer>
-                    <v-col cols="auto" class="px-0">
-                        <v-btn
-                            variant="text"
-                            icon="mdi-pencil"
-                            color="primary"
-                            @click="updateSelectionDialogOpen = true"
-                        >
-                        </v-btn>
-                    </v-col>
-                    <v-col cols="auto" class="pl-0">
-                        <v-btn
-                            variant="text"
-                            icon="mdi-delete"
-                            color="error"
-                            @click="deleteSelection(selection.id)"
-                        >
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </v-card-title>
-            <v-card-subtitle class="mt-2">
-                日付：{{ selection.date }}、時間：{{
-                    selection.time
-                }}、担当者：{{ selection.interviewer }}
-            </v-card-subtitle>
-        </v-card-item>
+    <v-timeline-item
+        :dot-color="selectionStepColors[selection.selection_step_state]"
+    >     
+        <v-card elevation="4" class="pa-4 pt-0">
+            <v-card-item>
+                <v-card-title>
+                    <v-row row>
+                        <v-col cols="auto" class="align-self-center">
+                            <v-chip variant="tonal" :color="selectionStepColors[selection.selection_step_state]">{{
+                                selectionSteps[
+                                    selection.selection_step_state
+                                ]
+                            }}</v-chip>
+                        </v-col>
+                        <v-spacer></v-spacer>
+                        <v-col cols="auto" class="px-0">
+                            <v-btn
+                                variant="text"
+                                icon="mdi-pencil"
+                                color="info"
+                                @click="updateSelectionDialogOpen = true"
+                            >
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="auto" class="pl-0">
+                            <v-btn
+                                variant="text"
+                                icon="mdi-delete"
+                                color="error"
+                                @click="deleteSelection(selection.id)"
+                            >
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-card-title>
+                <v-card-subtitle class="mt-2">
+                    日付：{{ selection.date }}、時間：{{
+                        selection.time
+                    }}、担当者：{{ selection.interviewer }}
+                </v-card-subtitle>
+            </v-card-item>
 
-        <v-card-text>
-            {{ selection.memo }}
-        </v-card-text>
-    </v-card>
+            <v-card-text>
+                {{ selection.memo }}
+            </v-card-text>
+        </v-card>
+    </v-timeline-item>
 
     <FormDialog
         title="選考状況の更新"
         :dialogOpen="updateSelectionDialogOpen"
         @update:dialogOpen="updateSelectionDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-select
                     label="選考ステップ"
@@ -107,7 +111,7 @@ const deleteSelection = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <div class="outlined-date-picker">
                     <input type="date" v-model="updateSelectionForm.date" />
@@ -116,13 +120,13 @@ const deleteSelection = () => {
                     label="時間"
                     v-model="updateSelectionForm.time"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="担当者"
                     v-model="updateSelectionForm.interviewer"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-textarea
                     label="選考メモ"
@@ -130,18 +134,18 @@ const deleteSelection = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="updateSelectionDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateSelection" variant="flat" color="primary"
+            <v-btn @click="updateSelection" variant="flat" color="info"
                 >更新</v-btn
             >
         </template>

@@ -38,18 +38,18 @@ const deleteUserQa = () => {
 
 <template>
     <QuestionAndAnswerWrapper>
-        <template v-slot:question>
+        <template #question>
             
-            <v-row>
-                <v-col cols="auto" class="align-self-center">
-                    {{ aboutUserQuestions[userQa.about_user_quetion_state] }}
+            <!-- 横幅がsm以上でこれを表示 -->
+            <v-row class="d-none d-sm-flex">
+                <v-col class="align-self-center overflow-hidden">
+                    {{ aboutUserQuestions[userQa.about_user_quetion_state] }}cnxjcbsjabjbjxzbjxbbjhxb hjb xbzhb hbzxh z bzxj bbjvjdsbjkfbkvbdsjbvkjsd
                 </v-col>
-                <v-spacer></v-spacer>
                 <v-col cols="auto" class="px-0">
                     <v-btn
                         variant="text"
                         icon="mdi-pencil"
-                        color="primary"
+                        color="info"
                         size="small"
                         @click="updateUserQaDialogOpen = true"
                     >
@@ -66,9 +66,36 @@ const deleteUserQa = () => {
                     </v-btn>
                 </v-col>
             </v-row>
+            <!-- 横幅がsm以下でこれを表示 -->
+            <v-row class="d-sm-none">
+                <v-spacer></v-spacer>
+                <v-col cols="auto" class="px-0 pt-0">
+                    <v-btn
+                        variant="text"
+                        icon="mdi-pencil"
+                        color="info"
+                        size="small"
+                        @click="updateUserQaDialogOpen = true"
+                    >
+                    </v-btn>
+                </v-col>
+                <v-col cols="auto" class="pl-0 pt-0">
+                    <v-btn
+                        variant="text"
+                        icon="mdi-delete"
+                        color="error"
+                        size="small"
+                        @click="deleteUserQa"
+                    >
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-sheet class="d-sm-none">
+                {{ aboutUserQuestions[userQa.about_user_quetion_state] }}cnxjcbsjabjbjxzbjxbbjhxb hjb xbzhb hbzxh z bzxj bbjvjdsbjkfbkvbdsjbvkjsd
+            </v-sheet>
             
         </template>
-        <template v-slot:answer>
+        <template #answer>
             <v-row class="py-2">
                 <v-col cols="auto" class="align-self-center">
                     {{ userQa.answer }}
@@ -81,7 +108,7 @@ const deleteUserQa = () => {
         :dialogOpen="updateUserQaDialogOpen"
         @update:dialogOpen="updateUserQaDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-row>
                     <v-col cols="auto" class="align-self-center mb-3">
@@ -95,18 +122,18 @@ const deleteUserQa = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="updateUserQaDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateUserQa" variant="flat" color="primary"
+            <v-btn @click="updateUserQa" variant="flat" color="info"
                 >更新</v-btn
             >
         </template>

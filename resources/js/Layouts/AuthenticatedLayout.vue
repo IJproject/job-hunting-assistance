@@ -27,7 +27,7 @@ const navigationItems = [
 const navigationLogout = {
     id: '100',
     title: 'ログアウト',
-    icon: 'mdi-account',
+    icon: 'mdi-logout',
 }
 
 const drawer = ref(true);
@@ -35,7 +35,7 @@ const rail = ref(true);
 
 const logout = () => {
     axios.post(route('logout'))
-        .then(response => {
+        .then(() => {
             Inertia.visit(route('login'))
         })
         .catch(error => {
@@ -51,21 +51,21 @@ const logout = () => {
             :rail="rail"
             permanent
             @click="rail = false"
-            color="primary"
+            color="info"
         >
             <v-list-item
                 prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
                 :title="$page.props.auth.user.name"
                 nav
             >
-                <template v-if="!rail" v-slot:append>
+                <template v-if="!rail" #append>
                     <v-btn
                         variant="text"
                         icon="mdi-chevron-left"
                         @click.stop="rail = !rail"
                     ></v-btn>
                 </template>
-                <template v-slot:prepend>
+                <template #prepend>
                     <v-avatar class="my-2" size="36">
                         <v-img
                             src="https://randomuser.me/api/portraits/men/85.jpg"
@@ -90,14 +90,14 @@ const logout = () => {
                 <v-divider thickness="2" class="mb-1"></v-divider>
                 <v-list-item
                     @click="logout"
-                    prepend-icon="mdi-logout"
-                    title="ログアウト"
-                    value="ログアウト"
+                    :prepend-icon="navigationLogout.icon"
+                    :title="navigationLogout.title"
+                    value="navigationLogout.title"
                     button
                 >
                 </v-list-item>
             </v-list>
-            <template v-slot:append></template>
+            <template #append></template>
         </v-navigation-drawer>
 
         <v-main>

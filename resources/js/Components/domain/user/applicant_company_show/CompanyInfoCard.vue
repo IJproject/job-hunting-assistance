@@ -4,7 +4,7 @@ import { Link, useForm } from "@inertiajs/vue3";
 
 import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
-import { industries, jobs, selectionStatuses } from "@/constants";
+import { industries, jobs, selectionStatuses, selectionStatusColors } from "@/constants";
 import { changeObjectForVSelect, getKeyByValue } from "@/functions";
 
 const props = defineProps({
@@ -27,10 +27,6 @@ const deleteCompanyForm = useForm({
 })
 
 const updateCompany = () => {
-    // updateCompanyForm.selection_status_state = await getKeyByValue(selectionStatuses, updateCompanyForm.selection_status_state);
-    // updateCompanyForm.industry_state = await getKeyByValue(industries, updateCompanyForm.industry_state);
-    // updateCompanyForm.job_state = await getKeyByValue(jobs, updateCompanyForm.job_state);
-
     updateCompanyForm.put(route('user.applicant_company.update', props.applicantCompany.id),  {
         onSuccess: () => {
             console.log('success')
@@ -54,26 +50,14 @@ const deleteCompany = () => {
         <v-card-item>
             <v-card-title>
                 <v-row>
-                    <v-col cols="auto">
-                        <h3 class="text-h5">
-                            {{ applicantCompany.company.name }}
-                        </h3>
+                    <v-col class="align-self-center">
+                        <div class="text-h6">会社情報</div>
                     </v-col>
-                    <v-col cols="auto">
-                        <v-chip variant="flat" color="primary">
-                            {{
-                                selectionStatuses[
-                                    applicantCompany.selection_status_state
-                                ]
-                            }}
-                        </v-chip>
-                    </v-col>
-                    <v-spacer></v-spacer>
                     <v-col cols="auto" class="px-0">
                         <v-btn
                             variant="text"
                             icon="mdi-pencil"
-                            color="primary"
+                            color="info"
                             @click="updateCompanyDialogOpen = true"
                         >
                         </v-btn>
@@ -86,10 +70,24 @@ const deleteCompany = () => {
                             @click="deleteCompany"
                         >
                         </v-btn>
+                    </v-col>     
+                </v-row>
+                <v-row>
+                    <v-col cols="auto" class="pt-0">
+                        <div>{{ applicantCompany.company.name }}</div>
+                    </v-col>
+                    <v-col cols="auto" class="me-auto pt-0">
+                        <v-chip variant="tonal" :color="selectionStatusColors[applicantCompany.selection_status_state]">
+                            {{
+                                selectionStatuses[
+                                    applicantCompany.selection_status_state
+                                ]
+                            }}
+                        </v-chip>
                     </v-col>
                 </v-row>
             </v-card-title>
-            <v-card-subtitle>
+            <v-card-subtitle class="mt-2">
                 <a
                     :href="applicantCompany.company.hp_url"
                     class="text-primary text-decoration-underline"
@@ -111,7 +109,7 @@ const deleteCompany = () => {
         :dialogOpen="updateCompanyDialogOpen"
         @update:dialogOpen="updateCompanyDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-select
                     label="選考状況"
@@ -120,7 +118,7 @@ const deleteCompany = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <v-select
                     label="業種"
@@ -129,7 +127,7 @@ const deleteCompany = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <v-select
                     label="職種"
@@ -138,13 +136,13 @@ const deleteCompany = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <v-text-field
                     label="給与"
                     v-model="updateCompanyForm.salary"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-textarea
                     label="企業メモ"
@@ -152,18 +150,18 @@ const deleteCompany = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="updateCompanyDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateCompany" variant="flat" color="primary"
+            <v-btn @click="updateCompany" variant="flat" color="info"
                 >更新</v-btn
             >
         </template>

@@ -71,20 +71,12 @@ const actionItems = [
         <v-card elevation="4">
             <v-card-text class="pt-2 pb-6">
                 <v-row>
-                    <v-col cols="auto" class="text-h5 align-self-center">
+                    <v-col class="text-h5 align-self-center">
                         {{ company.name }}
                     </v-col>
-                    <v-spacer></v-spacer>
-                    <v-col cols="auto">
-                        <!-- <v-btn
-                            color="primary"
-                            icon="mdi-pencil"
-                            variant="text"
-                            @click="updateCompanyDialogOpen = true"
-                        >
-                        </v-btn> -->
+                    <v-col cols="auto" class="align-self-center">
                         <v-menu>
-                            <template v-slot:activator="{ props }">
+                            <template #activator="{ props }">
                                 <v-btn
                                     variant="text"
                                     icon="mdi-dots-vertical"
@@ -120,13 +112,13 @@ const actionItems = [
         :dialogOpen="updateCompanyDialogOpen"
         @update:dialogOpen="updateCompanyDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-sheet class="mb-6">
                     <v-row>
                         <v-col cols="12">
                             <v-alert
-                                type="info"
+                                type="warning"
                                 elevation="2"
                                 icon="mdi-information"
                             >
@@ -141,14 +133,14 @@ const actionItems = [
                     v-model="updateCompanyForm.name"
                     :error-messages="validationErrors.name"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="法人番号"
                     v-model="updateCompanyForm.corporation_number"
                     :error-messages="validationErrors.corporation_number"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                     required
                 ></v-text-field>
                 <v-text-field
@@ -156,25 +148,25 @@ const actionItems = [
                     v-model="updateCompanyForm.hp_url"
                     :error-messages="validationErrors.hp_url"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="所在地"
                     v-model="updateCompanyForm.location"
                     :error-messages="validationErrors.location"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="updateCompanyDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateCompany" variant="flat" color="primary"
+            <v-btn @click="updateCompany" variant="flat" color="info"
                 >更新</v-btn
             >
         </template>

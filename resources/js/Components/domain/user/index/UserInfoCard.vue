@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps({
     authUser: Object,
-    applicantCompaniesCount: Number,
+    underSelectionCount: Number,
 })
 </script>
 
@@ -10,24 +10,20 @@ defineProps({
         <v-row>
             <v-col cols="auto" class="align-self-center">
                 <v-sheet class="px-2 mx-2">
-                    ここに
-                </v-sheet>
-            </v-col>
-            <v-col cols="auto" class="me-auto align-self-center">
-                <v-sheet class="px-2 mx-2">
                     <div class="text-h6">
                         {{ authUser.name }}
                     </div>
                     <div class="text-body-2">
-                        選考中企業数：{{ applicantCompaniesCount }}
+                        選考中企業数：{{ underSelectionCount }}
                     </div>
                 </v-sheet>
             </v-col>
-            <v-col cols="auto" class="align-self-center">
+            <v-col cols="auto" class="ms-auto align-self-center">
                 <v-btn
-                    color="primary"
+                    color="info"
                     variant="flat"
                     :href="route('user.show', authUser.id)"
+                    class="mx-auto"
                 >
                     詳細
                 </v-btn>

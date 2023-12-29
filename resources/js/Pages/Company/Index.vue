@@ -13,10 +13,6 @@ const props = defineProps({
     search_word: String,
 });
 
-const searchCompany = () => {
-    console.log("searchCompany");
-};
-
 console.log(props.companies.data);
 </script>
 
@@ -34,12 +30,5 @@ console.log(props.companies.data);
             </v-row>
         </SectionContainer>
         <Pagination :links="companies.links" :pageCount="companies.last_page" />
-        
     </AuthenticatedLayout>
 </template>
-
-<style scoped>
-v-input__details {
-    padding-inline: 0 !important;
-}
-</style>

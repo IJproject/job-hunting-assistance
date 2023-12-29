@@ -34,7 +34,7 @@ const isSnackbar = ref(false)
 
 <template>
     <v-btn
-        color="primary"
+        color="info"
         variant="flat"
         @click="createCompanyDialogOpen = true"
     >
@@ -45,13 +45,13 @@ const isSnackbar = ref(false)
         :dialogOpen="createCompanyDialogOpen"
         @update:dialogOpen="createCompanyDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-sheet class="mb-6">
                     <v-row>
                         <v-col cols="12">
                             <v-alert
-                                type="info"
+                                type="warning"
                                 elevation="2"
                                 icon="mdi-information"
                             >
@@ -66,7 +66,7 @@ const isSnackbar = ref(false)
                     v-model="createCompanyForm.name"
                     :error-messages="validationErrors.name"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                     required
                 ></v-text-field>
                 <v-text-field
@@ -74,7 +74,7 @@ const isSnackbar = ref(false)
                     v-model="createCompanyForm.corporation_number"
                     :error-messages="validationErrors.corporation_number"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                     required
                 ></v-text-field>
                 <v-text-field
@@ -82,25 +82,25 @@ const isSnackbar = ref(false)
                     v-model="createCompanyForm.hp_url"
                     :error-messages="validationErrors.hp_url"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="所在地"
                     v-model="createCompanyForm.location"
                     :error-messages="validationErrors.location"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="createCompanyDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="createCompany" variant="flat" color="primary"
+            <v-btn @click="createCompany" variant="flat" color="info"
                 >追加</v-btn
             >
         </template>

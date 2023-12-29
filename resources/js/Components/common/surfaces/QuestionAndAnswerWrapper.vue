@@ -3,7 +3,7 @@ import { aboutCompanyQuestions } from "@/constants";
 </script>
 
 <template>
-    <v-card elevation="4" class="pa-4 mb-4">
+    <v-card elevation="4" class="pa-4 pt-0 pt-sm-4 mb-4">
         <v-sheet>
             <slot name="question" />
         </v-sheet>

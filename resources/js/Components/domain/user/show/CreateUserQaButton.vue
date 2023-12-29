@@ -37,7 +37,7 @@ const createUserQa = () => {
 
 <template>
     <v-btn
-        color="primary"
+        color="info"
         variant="flat"
         @click="createUserQaDialogOpen = true"
     >
@@ -48,7 +48,7 @@ const createUserQa = () => {
         :dialogOpen="createUserQaDialogOpen"
         @update:dialogOpen="createUserQaDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-select
                     label="質問"
@@ -57,7 +57,7 @@ const createUserQa = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <v-textarea
                     label="回答"
@@ -65,18 +65,18 @@ const createUserQa = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="createUserQaDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="createUserQa" variant="flat" color="primary"
+            <v-btn @click="createUserQa" variant="flat" color="info"
                 >追加</v-btn
             >
         </template>

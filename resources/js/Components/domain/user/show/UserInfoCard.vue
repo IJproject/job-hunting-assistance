@@ -36,22 +36,12 @@ const updateUser = () => {
 <template>
     <v-card elevation="4" class="pa-4">
         <v-row>
-            <v-col cols="auto" class="align-self-center">
-                <v-sheet class="px-2 mx-2">
-                    ここに
-                </v-sheet>
+            <v-col class="align-self-center">
+                <div class="text-h6">ユーザー情報</div>
             </v-col>
-            <v-col cols="auto" class="me-auto align-self-center">
-                <v-sheet class="px-2 mx-2">
-                    <div class="text-h6">
-                        {{ authUser.name }}<br />
-                        {{ authUser.email }}
-                    </div>
-                </v-sheet>
-            </v-col>
-            <v-col cols="auto" class="align-self-center">
+            <v-col cols="auto" class="ms-auto">
                 <v-btn
-                    color="primary"
+                    color="info"
                     variant="text"
                     icon="mdi-pencil"
                     @click="updateUserDialogOpen = true"
@@ -59,33 +49,39 @@ const updateUser = () => {
                 </v-btn>
             </v-col>
         </v-row>
+        <v-sheet class="px-2 mx-2">
+            <div class="text-h6">
+                {{ authUser.name }}<br />
+                {{ authUser.email }}
+            </div>
+        </v-sheet>
     </v-card>
     <FormDialog
         title="ユーザー情報の更新"
         :dialogOpen="updateUserDialogOpen"
         @update:dialogOpen="updateUserDialogOpen = $event"
     >
-        <template v-slot:main>
+        <template #main>
             <v-form>
                 <v-text-field
                     label="名前"
                     v-model="updateUserForm.name"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="メールアドレス"
                     type="email"
                     v-model="updateUserForm.email"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
                 <v-text-field
                     label="現在のパスワード"
                     type="password"
                     v-model="updateUserForm.current_password"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                     hint="パスワードを入力しないと更新されません。"
                     persistent-hint
                     class="mb-4"
@@ -95,7 +91,7 @@ const updateUser = () => {
                     type="password"
                     v-model="updateUserForm.password"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                     hint="パスワードを変更したい場合は入力してください。"
                     persistent-hint
                     class="mb-4"
@@ -105,18 +101,18 @@ const updateUser = () => {
                     type="password"
                     v-model="updateUserForm.password_confirmation"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-text-field>
             </v-form>
         </template>
-        <template v-slot:actions>
+        <template #actions>
             <v-btn
                 @click="updateUserDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateUser" variant="flat" color="primary"
+            <v-btn @click="updateUser" variant="flat" color="info"
                 >更新</v-btn
             >
         </template>

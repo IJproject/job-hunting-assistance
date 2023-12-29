@@ -1,12 +1,26 @@
+import { warn } from "vue";
+
 export const themeColors = {
     dark: false,
     colors: {
-        primary: '#0091EA',
-        'primary-lighten': '#00B0FF',
-        'primary-darken': '#1976D2',
+        primary: '#1976D2',
+        'primary-lighten': '#1E88E5',
+        'primary-darken': '#0D47A1',
+        secondary: '#26A69A',
+        'secondary-lighten': '#4DB6AC',
+        'secondary-darken': '#00897B',
+        info: '#0091EA',
+        'info-lighten': '#00B0FF',
+        'info-darken': '#1976D2',
+        success: "#43A047",
+        'success-lighten': '#66BB6A',
+        'success-darken': '#388E3C',
         error: '#E53935',
         'error-lighten': '#FF5252',
         'error-darken': '#D32F2F',
+        warning: '#FDD835',
+        'warning-lighten': '#FFEE58',
+        'warning-darken': '#FBC02D',
         grey: '#BDBDBD',
     }
 // primary: これはアプリケーションの主要な色で、多くの場合、ボタンやアイコンなどの要素に使われます。(青色)
