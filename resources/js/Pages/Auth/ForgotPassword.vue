@@ -1,10 +1,7 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+
+// import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 defineProps({
     status: {
@@ -25,37 +22,52 @@ const submit = () => {
     <GuestLayout>
         <Head title="Forgot Password" />
 
-        <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset
-            link that will allow you to choose a new one.
-        </div>
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
-                </PrimaryButton>
-            </div>
-        </form>
+        <v-sheet max-width="100%" height="100vh" class="d-flex justify-center align-center">
+            <v-card class="mx-auto my-auto" min-width="375" max-width="500" elevation="16">
+                <v-card-text>
+                    <div class="mb-4 text-sm text-gray-600">
+                        登録しているメールアドレスを入力してください。パスワード再設定用のリンクを送信します。
+                    </div>
+                    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+                        {{ status }}
+                    </div>
+                    <v-form @submit.prevent="submit">
+                        <v-text-field
+                            v-model="form.email"
+                            type="email"
+                            label="メールアドレス"
+                            required
+                            color="info"
+                            variant="outlined"
+                        ></v-text-field>
+                        <v-row>
+                            <v-spacer></v-spacer>
+                            <v-col>
+                                <v-btn
+                                    type="submit"
+                                    :disabled="form.processing"
+                                    color="info"
+                                >
+                                    パスワードの再設定リンクを送信
+                                </v-btn>
+                            </v-col>
+                            <v-spacer></v-spacer>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="auto">
+                                <v-btn
+                                    :href="route('login')"
+                                    prepend-icon="mdi-triangle-small-down"
+                                    variant="text"
+                                    color="primary"
+                                >
+                                    ログインはこちら
+                                </v-btn>
+                            </v-col>
+                        </v-row>
+                    </v-form>
+                </v-card-text>
+            </v-card>
+        </v-sheet>
     </GuestLayout>
 </template>

@@ -38,6 +38,14 @@ class ApplicantCompanySeeder extends Seeder
                 'memo' => 'ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。',
                 'salary' => '1000万円〜2000万円',
             ],
+            [
+                'user_id' => 2,
+                'company_id' => 1,
+                'industry_state' => 44,  
+                'selection_status_state' => 2,
+                'memo' => 'ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。',
+                'salary' => '100万円〜150万円',
+            ],
         ]);
     }
 }

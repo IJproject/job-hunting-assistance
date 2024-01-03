@@ -1,10 +1,8 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { ref } from 'vue';
 import { Head, useForm } from '@inertiajs/vue3';
+
+// import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 const props = defineProps({
     email: {
@@ -16,6 +14,9 @@ const props = defineProps({
         required: true,
     },
 });
+
+const visible = ref(false);
+const visible_confirmation = ref(false);
 
 const form = useForm({
     token: props.token,
@@ -35,58 +36,52 @@ const submit = () => {
     <GuestLayout>
         <Head title="Reset Password" />
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-
-                <TextInput
-                    id="password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Reset Password
-                </PrimaryButton>
-            </div>
-        </form>
+        <v-sheet max-width="100%" height="100vh" class="d-flex justify-center align-center">
+            <v-card class="mx-auto my-auto" min-width="375" max-width="500" elevation="16">
+                <v-form @submit.prevent="submit">
+                    <v-text-field
+                        v-model="form.email"
+                        type="email"
+                        label="メールアドレス"
+                        required
+                        color="info"
+                        variant="outlined"
+                    ></v-text-field>
+                    <v-text-field
+                        v-model="form.password"
+                        :type="visible ? 'text' : 'password'"
+                        label="パスワード"
+                        required
+                        color="info"
+                        variant="outlined"
+                        :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+                        @click:append-inner="visible = !visible"
+                    ></v-text-field>
+                    <v-text-field
+                        v-model="form.password_confirmation"
+                        :type="visible_confirmation ? 'text' : 'password'"
+                        label="パスワードの確認"
+                        required
+                        color="info"
+                        variant="outlined"
+                        :append-inner-icon="visible_confirmation ? 'mdi-eye' : 'mdi-eye-off'"
+                        @click:append-inner="visible_confirmation = !visible_confirmation"
+                    ></v-text-field>
+                    <v-row>
+                        <v-spacer></v-spacer>
+                        <v-col>
+                            <v-btn
+                                type="submit"
+                                :disabled="form.processing"
+                                color="info"
+                            >
+                                パスワードをリセット
+                            </v-btn>
+                        </v-col>
+                        <v-spacer></v-spacer>
+                    </v-row>
+                </v-form>
+            </v-card>
+        </v-sheet>
     </GuestLayout>
 </template>
