@@ -4,7 +4,7 @@ import { Link, useForm } from "@inertiajs/vue3";
 
 import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
 
-import { industries, jobs, selectionStatuses, selectionStatusColors } from "@/constants";
+import { industries, selectionStatuses, selectionStatusColors } from "@/constants";
 import { changeObjectForVSelect, getKeyByValue } from "@/functions";
 
 const props = defineProps({
@@ -17,7 +17,6 @@ const updateCompanyDialogOpen = ref(false);
 const updateCompanyForm = useForm({
     selection_status_state: selectionStatuses[props.applicantCompany.selection_status_state],
     industry_state: industries[props.applicantCompany.industry_state],
-    job_state: jobs[props.applicantCompany.job_state],
     salary: props.applicantCompany.salary,
     memo: props.applicantCompany.memo,
 });
@@ -27,6 +26,8 @@ const deleteCompanyForm = useForm({
 })
 
 const updateCompany = () => {
+    updateCompanyForm.selection_status_state = getKeyByValue(selectionStatuses, updateCompanyForm.selection_status_state);
+    updateCompanyForm.industry_state = getKeyByValue(industries, updateCompanyForm.industry_state);
     updateCompanyForm.put(route('user.applicant_company.update', props.applicantCompany.id),  {
         onSuccess: () => {
             console.log('success')
@@ -90,12 +91,11 @@ const deleteCompany = () => {
             <v-card-subtitle class="mt-2">
                 <a
                     :href="applicantCompany.company.hp_url"
-                    class="text-primary text-decoration-underline"
+                    class="text-info text-decoration-underline"
                 >
                     {{ applicantCompany.company.hp_url }} </a
                 ><br />
                 {{ industries[applicantCompany.industry_state] }},
-                {{ jobs[applicantCompany.job_state] }},
                 {{ applicantCompany.salary }}
             </v-card-subtitle>
         </v-card-item>
@@ -124,15 +124,6 @@ const deleteCompany = () => {
                     label="業種"
                     v-model="updateCompanyForm.industry_state"
                     :items="changeObjectForVSelect(industries)"
-                    item-title="label"
-                    item-value="id"
-                    variant="outlined"
-                    color="info"
-                ></v-select>
-                <v-select
-                    label="職種"
-                    v-model="updateCompanyForm.job_state"
-                    :items="changeObjectForVSelect(jobs)"
                     item-title="label"
                     item-value="id"
                     variant="outlined"

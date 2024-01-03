@@ -103,7 +103,6 @@ class UserController extends Controller
     {
         $applicant_company->fill($request->only([
             'industry_state',
-            'job_state',
             'selection_status_state',
             'salary',
             'memo',

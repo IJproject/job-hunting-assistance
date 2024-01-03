@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
@@ -19,12 +20,7 @@ use App\Http\Controllers\CompanyController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Auth::check() ? redirect('/user') : redirect('/login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -33,8 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
-    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
-    Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/user/info/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::put('/user/info/{user}', [UserController::class, 'update'])->name('user.update');
     
     Route::get('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_show'])->name('user.applicant_company.show');
     Route::put('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_update'])->name('user.applicant_company.update');

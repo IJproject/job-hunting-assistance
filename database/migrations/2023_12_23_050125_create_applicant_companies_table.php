@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->integer('industry_state')->nullable();
-            $table->integer('job_state')->nullable();
             $table->integer('selection_status_state');
             $table->text('memo')->nullable();
             $table->string('salary')->nullable();

@@ -41,7 +41,7 @@ const createCompanyQa = () => {
 
 <template>
     <v-btn
-        color="primary"
+        color="info"
         variant="flat"
         @click="createCompanyQaDialogOpen = true"
     >
@@ -61,7 +61,7 @@ const createCompanyQa = () => {
                     item-title="label"
                     item-value="id"
                     variant="outlined"
-                    color="primary"
+                    color="info"
                 ></v-select>
                 <v-textarea
                     label="回答"
@@ -69,7 +69,7 @@ const createCompanyQa = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
@@ -77,10 +77,10 @@ const createCompanyQa = () => {
             <v-btn
                 @click="createCompanyQaDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="createCompanyQa" variant="flat" color="primary"
+            <v-btn @click="createCompanyQa" variant="flat" color="info"
                 >追加</v-btn
             >
         </template>

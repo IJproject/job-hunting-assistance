@@ -56,7 +56,7 @@ const deleteCompanyQa = () => {
                     <v-btn
                         variant="text"
                         icon="mdi-pencil"
-                        color="primary"
+                        color="info"
                         size="small"
                         @click="updateCompanyQaDialogOpen = true"
                     >
@@ -102,7 +102,7 @@ const deleteCompanyQa = () => {
                     auto-grow
                     variant="outlined"
                     rows="2"
-                    color="primary"
+                    color="info"
                 ></v-textarea>
             </v-form>
         </template>
@@ -110,10 +110,10 @@ const deleteCompanyQa = () => {
             <v-btn
                 @click="updateCompanyQaDialogOpen = false"
                 variant="outlined"
-                color="primary"
+                color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateCompanyQa" variant="flat" color="primary"
+            <v-btn @click="updateCompanyQa" variant="flat" color="info"
                 >更新</v-btn
             >
         </template>

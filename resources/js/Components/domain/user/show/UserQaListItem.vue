@@ -43,7 +43,7 @@ const deleteUserQa = () => {
             <!-- 横幅がsm以上でこれを表示 -->
             <v-row class="d-none d-sm-flex">
                 <v-col class="align-self-center overflow-hidden">
-                    {{ aboutUserQuestions[userQa.about_user_quetion_state] }}cnxjcbsjabjbjxzbjxbbjhxb hjb xbzhb hbzxh z bzxj bbjvjdsbjkfbkvbdsjbvkjsd
+                    {{ aboutUserQuestions[userQa.about_user_quetion_state] }}
                 </v-col>
                 <v-col cols="auto" class="px-0">
                     <v-btn
@@ -91,7 +91,7 @@ const deleteUserQa = () => {
                 </v-col>
             </v-row>
             <v-sheet class="d-sm-none">
-                {{ aboutUserQuestions[userQa.about_user_quetion_state] }}cnxjcbsjabjbjxzbjxbbjhxb hjb xbzhb hbzxh z bzxj bbjvjdsbjkfbkvbdsjbvkjsd
+                {{ aboutUserQuestions[userQa.about_user_quetion_state] }}
             </v-sheet>
             
         </template>

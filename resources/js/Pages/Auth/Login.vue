@@ -40,7 +40,7 @@ const submit = () => {
                             type="email"
                             label="メールアドレス"
                             required
-                            color="primary"
+                            color="info"
                             variant="outlined"
                         ></v-text-field>
 
@@ -49,13 +49,13 @@ const submit = () => {
                             type="password"
                             label="パスワード"
                             required
-                            color="primary"
+                            color="info"
                             variant="outlined"
                         ></v-text-field>
 
                         <v-checkbox
                             v-model="form.remember"
-                            color="primary"
+                            color="info"
                             label="Remember me"
                         ></v-checkbox>
                         <div class="d-flex align-center">
@@ -63,7 +63,7 @@ const submit = () => {
                                 v-if="canResetPassword"
                                 :href="route('password.request')"
                                 variant="outlined"
-                                color="primary"
+                                color="info"
                             >
                                 Forgot your password?
                             </v-btn>
@@ -73,7 +73,7 @@ const submit = () => {
                             <v-btn
                                 type="submit"
                                 :disabled="form.processing"
-                                color="primary"
+                                color="info"
                             >
                                 Log in
                             </v-btn>

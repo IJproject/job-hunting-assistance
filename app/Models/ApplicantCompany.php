@@ -19,7 +19,6 @@ class ApplicantCompany extends Model
         'user_id',
         'company_id',
         'industry_state',
-        'job_state',
         'selection_status_state',
         'memo',
         'salary',
