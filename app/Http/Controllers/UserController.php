@@ -29,6 +29,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        if($user->id != Auth::user()->id){
+            return redirect()->route('user.index');
+        }
         return Inertia::render('User/Show', [
             'authUser' => $user->load(['user_qas'])
         ]);
@@ -36,7 +39,7 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        if(Hash::check($request->current_password, $user->password)){
+        if(Hash::check($request->current_password, $user->password) && $user->id == Auth::user()->id){
             if($request->password){
                 $request->validate([
                     'name' => 'required|string|max:30',
@@ -68,32 +71,37 @@ class UserController extends Controller
 
     public function user_qa_store(Request $request)
     {
-        if($request->id){
-            $user_qa = UserQa::findOrFail($request->id);
-        } 
-        else {
-            $user_qa = new UserQa();
-        }
-        $user_qa->answer_date = Carbon::now()->format('Y/m/d');
+        if($request->user_id == Auth::user()->id){
+            if($request->id){
+                $user_qa = UserQa::findOrFail($request->id);
+            } 
+            else {
+                $user_qa = new UserQa();
+            }
+            $user_qa->answer_date = Carbon::now()->format('Y/m/d');
 
-        $request->validate([
-            'user_id' => 'required|integer|exists:users,id',
-            'about_user_quetion_state' => 'required|integer',
-            'answer' => 'required|string|max:500',
-        ]);
-        
-        $user_qa->fill($request->only([
-            'user_id',
-            'about_user_quetion_state',
-            'answer',
-            'answer_date',
-        ]))->save();
+            $request->validate([
+                'user_id' => 'required|integer|exists:users,id',
+                'about_user_quetion_state' => 'required|integer',
+                'answer' => 'required|string|max:500',
+            ]);
+            
+            $user_qa->fill($request->only([
+                'user_id',
+                'about_user_quetion_state',
+                'answer',
+                'answer_date',
+            ]))->save();
+        }
 
         return to_route('user.show', $user_qa->user_id);
     }
 
     public function applicant_company_show(ApplicantCompany $applicant_company)
     {
+        if($applicant_company->user_id != Auth::user()->id){
+            return redirect()->route('user.index');
+        }
         return Inertia::render('User/ApplicantCompany/Show', [
             'applicantCompany' => $applicant_company->load(['company', 'applicant_company_qas', 'selections']),
         ]);
@@ -101,21 +109,23 @@ class UserController extends Controller
 
     public function applicant_company_update(Request $request, ApplicantCompany $applicant_company)
     {
-        $applicant_company->fill($request->only([
-            'industry_state',
-            'selection_status_state',
-            'salary',
-            'memo',
-        ]))->save();
-
+        if($applicant_company->user_id == Auth::user()->id){
+            $applicant_company->fill($request->only([
+                'industry_state',
+                'selection_status_state',
+                'salary',
+                'memo',
+            ]))->save();
+        }
         return to_route('user.applicant_company.show', $applicant_company->id);
     }
 
     public function applicant_company_destroy(Request $request)
     {
         $applicant_company = ApplicantCompany::findOrFail($request->id);
-        $applicant_company->delete();
-        
+        if($applicant_company->user_id == Auth::user()->id){
+            $applicant_company->delete();
+        }
         return to_route('user.index');
     }
 
