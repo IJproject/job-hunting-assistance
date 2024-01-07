@@ -18,8 +18,8 @@ class ApplicantCompanySeeder extends Seeder
                 'user_id' => 1,
                 'company_id' => 1,
                 'industry_state' => 1,  
-                'selection_status_state' => 1,
-                'memo' => 'ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。',
+                'selection_status_state' => 2,
+                'memo' => 'タピオカのとこ',
                 'salary' => '300万円〜400万円',
             ],
             [
@@ -27,7 +27,7 @@ class ApplicantCompanySeeder extends Seeder
                 'company_id' => 2,
                 'industry_state' => 2,  
                 'selection_status_state' => 2,
-                'memo' => 'ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。',
+                'memo' => 'りんごのとこ',
                 'salary' => '400万円〜500万円',
             ],
             [
@@ -35,16 +35,8 @@ class ApplicantCompanySeeder extends Seeder
                 'company_id' => 3,
                 'industry_state' => 3,  
                 'selection_status_state' => 5,
-                'memo' => 'ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。',
+                'memo' => 'マー君のとこ',
                 'salary' => '1000万円〜2000万円',
-            ],
-            [
-                'user_id' => 2,
-                'company_id' => 1,
-                'industry_state' => 44,  
-                'selection_status_state' => 2,
-                'memo' => 'ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。ここにはメモが入ります。',
-                'salary' => '100万円〜150万円',
             ],
         ]);
     }

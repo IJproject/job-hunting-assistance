@@ -17,19 +17,19 @@ class ApplicantCompanyQaSeeder extends Seeder
             [
                 'applicant_company_id' => 1,
                 'about_company_quetion_state' => 1,
-                'answer' => 'ここには回答1が入ります。ここには回答1が入ります。ここには回答1が入ります。ここには回答1が入ります。',
+                'answer' => '創業1500年の老舗の中の老舗。看板メニューは創業時から注ぎ足され続けてきたミルクティーに、溢れんばかりのタピオカを詰め込んだ「ミルクティー和えタピオカ」。',
                 'answer_date' => '2021-01-01',
             ],
             [
-                'applicant_company_id' => 2,
+                'applicant_company_id' => 1,
                 'about_company_quetion_state' => 2,
-                'answer' => 'ここには回答2が入ります。ここには回答2が入ります。ここには回答2が入ります。ここには回答2が入ります。',
+                'answer' => 'タピオカを日常的に摂取したいから。',
                 'answer_date' => '2021-01-22',
             ],
             [
-                'applicant_company_id' => 3,
+                'applicant_company_id' => 2,
                 'about_company_quetion_state' => 3,
-                'answer' => 'ここには回答3が入ります。ここには回答3が入ります。ここには回答3が入ります。ここには回答3が入ります。',
+                'answer' => 'アワヨクバ、リンゴニナリタイ',
                 'answer_date' => '2021-01-31',
             ]
         ]);
