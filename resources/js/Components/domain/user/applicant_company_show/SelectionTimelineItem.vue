@@ -34,6 +34,7 @@ const updateSelection = () => {
     updateSelectionForm.post(route('user.applicant_company.selection.store'), {
         onSuccess: () => {
             updateSelectionDialogOpen.value = false;
+            updateSelectionForm.selection_step_state = selectionSteps[updateSelectionForm.selection_step_state]
         },
         onError: (error) => {
             console.log(error);

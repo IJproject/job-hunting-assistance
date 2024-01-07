@@ -30,8 +30,9 @@ const updateCompany = () => {
     updateCompanyForm.industry_state = getKeyByValue(industries, updateCompanyForm.industry_state);
     updateCompanyForm.put(route('user.applicant_company.update', props.applicantCompany.id),  {
         onSuccess: () => {
-            console.log('success')
             updateCompanyDialogOpen.value = false;
+            updateCompanyForm.selection_status_state = selectionStatuses[updateCompanyForm.selection_status_state];
+            updateCompanyForm.industry_state = industries[updateCompanyForm.industry_state];
         },
         onError: () => {
             console.log('error');
