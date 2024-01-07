@@ -30,8 +30,7 @@ const navigationLogout = {
     icon: 'mdi-logout',
 }
 
-const drawer = ref(true);
-const rail = ref(true);
+const drawer = ref(false);
 
 const logout = () => {
     axios.post(route('logout'))
@@ -46,37 +45,21 @@ const logout = () => {
 
 <template>
     <v-app>
+
+        <v-app-bar color="info">
+            <v-app-bar-nav-icon 
+                variant="text"
+                @click.stop="drawer = !drawer">
+            </v-app-bar-nav-icon>
+            <template v-slot:append>
+                <span class="mr-2">{{ $page.props.auth.user.name }}</span>
+            </template>
+        </v-app-bar>
+            
         <v-navigation-drawer
             v-model="drawer"
-            :rail="rail"
-            permanent
-            @click="rail = false"
-            color="info"
+            temporary
         >
-            <v-list-item
-                prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-                :title="$page.props.auth.user.name"
-                nav
-            >
-                <template v-if="!rail" #append>
-                    <v-btn
-                        variant="text"
-                        icon="mdi-chevron-left"
-                        @click.stop="rail = !rail"
-                    ></v-btn>
-                </template>
-                <template #prepend>
-                    <v-avatar class="my-2" size="36">
-                        <v-img
-                            src="https://randomuser.me/api/portraits/men/85.jpg"
-                            alt="ユーザーの写真"
-                        ></v-img>
-                    </v-avatar>
-                </template>
-            </v-list-item>
-
-            <v-divider></v-divider>
-
             <v-list density="compact" nav>
                 <v-list-item
                     v-for="item in navigationItems"
@@ -87,7 +70,7 @@ const logout = () => {
                     :href="item.url"
                 >
                 </v-list-item>
-                <v-divider thickness="2" class="mb-1"></v-divider>
+                <v-divider thickness="1" class="mb-1"></v-divider>
                 <v-list-item
                     @click="logout"
                     :prepend-icon="navigationLogout.icon"
@@ -99,7 +82,6 @@ const logout = () => {
             </v-list>
             <template #append></template>
         </v-navigation-drawer>
-
         <v-main>
             <v-container>
                 <slot />
