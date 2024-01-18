@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const test = 1
+</script>
+
 <template>
     <v-row class="my-2">
         <v-spacer></v-spacer>

@@ -4,6 +4,8 @@ import { selectionStatuses, selectionStatusColors } from "@/constants";
 defineProps({
     company: Object,
 });
+
+const test = 1
 </script>
 
 <template>

@@ -5,7 +5,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SectionContainer from "@/Components/common/surfaces/SectionContainer.vue";
 import UserInfoCard from "@/Components/domain/user/index/UserInfoCard.vue";
 import CompanyListItem from "@/Components/domain/user/index/CompanyListItem.vue";
-import ShowCompanisButton from "@/Components/domain/user/index/ShowCompaniesButton.vue";
+import ShowCompaniesButton from "@/Components/domain/user/index/ShowCompaniesButton.vue";
 
 const props = defineProps({
     authUser: Object,
@@ -35,7 +35,7 @@ console.log(props.applicantCompanies);
                     <CompanyListItem :company="company" />
                 </template>
             </v-expansion-panels>
-            <ShowCompanisButton />
+            <ShowCompaniesButton />
         </SectionContainer>
     </AuthenticatedLayout>
 </template>

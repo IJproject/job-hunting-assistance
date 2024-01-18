@@ -1,5 +1,3 @@
-import { warn } from "vue";
-
 export const themeColors = {
     dark: false,
     colors: {

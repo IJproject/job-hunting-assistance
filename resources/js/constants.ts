@@ -153,3 +153,5 @@ export const aboutCompanyQuestions = {
     2: '志望動機',
     3: '将来像',
 }
+
+const test: string = 'test'

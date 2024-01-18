@@ -2,12 +2,12 @@ module.exports = {
   // Vueファイルを処理するためのトランスフォーマー
   transform: {
     ".*\\.(vue)$": "@vue/vue3-jest",
-    "^.+\\.js$": "babel-jest"
+    "^.+\\.ts$": "babel-jest"
   },
   
   // テストファイルが存在するディレクトリ
   testMatch: [
-    "<rootDir>/resources/js/Test/**/*.test.js",
+    "<rootDir>/resources/js/Test/**/*.test.ts",
   ],
 
   // テスト中に無視するファイルやディレクトリ
@@ -15,7 +15,7 @@ module.exports = {
 
   // モジュール名のエイリアス設定
   // moduleNameMapper: {
-  //   "^@/(.*)$": "<rootDir>/resources/js/$1"
+  //   "^@/(.*)$": "<rootDir>/resources/ts/$1"
   // },
 
   // Jestが環境をセットアップするためのファイル
