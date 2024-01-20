@@ -135,7 +135,6 @@ export const selectionStepColors = {
     13: 'warning',
     14: 'warning-lighten',
     100: 'gray',
-
 }
 
 export const aboutUserQuestions = {

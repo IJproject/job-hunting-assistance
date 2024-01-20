@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch } from 'vue'
 
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import SectionContainer from "@/Components/common/surfaces/SectionContainer.vue";
-import CreateCompanyButton from "@/Components/domain/company/CreateCompanyButton.vue";
-import SearchCompanyForm from "@/Components/domain/company/SearchCompanyForm.vue";
-import CompanyListItem from "@/Components/domain/company/CompanyListItem.vue";
-import Pagination from "@/Components/common/feedbacks/Pagination.vue";
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import SectionContainer from '@/Components/common/surfaces/SectionContainer.vue'
+import CreateCompanyButton from '@/Components/domain/company/CreateCompanyButton.vue'
+import SearchCompanyForm from '@/Components/domain/company/SearchCompanyForm.vue'
+import CompanyListItem from '@/Components/domain/company/CompanyListItem.vue'
+import Pagination from '@/Components/common/feedbacks/Pagination.vue'
 
 const props = defineProps({
     companies: Array,
     search_word: String,
-});
+})
 
-console.log(props.companies.data);
+console.log(props.companies.data)
 </script>
 
 <template>

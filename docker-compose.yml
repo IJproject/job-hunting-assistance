@@ -1,0 +1,35 @@
+version: '3'
+services:
+    nginx:
+        build: /app/docker/nginx
+        container_name: nginx
+        ports:
+            - '80:80'
+        volumes:
+
+    vue:
+        build: /apo/docker/vue
+        container_name: vue
+        ports:
+            - '3000:3000'
+        expose:
+            - '3000'
+        volumes:
+            - .:/app
+            - /app/node_modules
+    php:
+        image: /app/docker/php
+        container_name: php
+        volumes:
+
+    mysql:
+        image: mysql
+        container_name: db
+        environment:
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: root
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: password
+        ports:
+            - '3306:3306'
+        volumes:

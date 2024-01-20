@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { Head, useForm } from '@inertiajs/vue3'
 
 // import GuestLayout from '@/Layouts/GuestLayout.vue';
 
@@ -11,31 +11,42 @@ defineProps({
     status: {
         type: String,
     },
-});
+})
 
 const form = useForm({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     remember: false,
-});
+})
 
-const visible = ref(false);
+const visible = ref(false)
 
 const submit = () => {
-    form.post(route("login"), {
-        onFinish: () => form.reset("password"),
-    });
-};
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    })
+}
 </script>
 
 <template>
     <GuestLayout>
         <Head title="Log in" />
 
-        <v-sheet max-width="100%" height="100vh" class="d-flex justify-center align-center">
-            <v-card class="mx-auto my-auto" min-width="375" max-width="500" elevation="16">
+        <v-sheet
+            max-width="100%"
+            height="100vh"
+            class="d-flex justify-center align-center"
+        >
+            <v-card
+                class="mx-auto my-auto"
+                min-width="375"
+                max-width="500"
+                elevation="16"
+            >
                 <v-card-item class="mt-2 mb-4">
-                    <v-card-title class="text-center text-h5"> ログイン </v-card-title>
+                    <v-card-title class="text-center text-h5">
+                        ログイン
+                    </v-card-title>
                 </v-card-item>
 
                 <v-card-text>
@@ -55,7 +66,9 @@ const submit = () => {
                             required
                             color="info"
                             variant="outlined"
-                            :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+                            :append-inner-icon="
+                                visible ? 'mdi-eye' : 'mdi-eye-off'
+                            "
                             @click:append-inner="visible = !visible"
                         ></v-text-field>
                         <!-- <v-checkbox

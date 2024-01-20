@@ -1,43 +1,39 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
-import SnackBar from '@/Components/common/feedbacks/SnackBar.vue';
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
+import SnackBar from '@/Components/common/feedbacks/SnackBar.vue'
 
 const createCompanyForm = useForm({
     name: null,
     corporation_number: null,
     hp_url: null,
     location: null,
-});
+})
 const validationErrors = ref({})
 
 // 新規作成処理
-const createCompanyDialogOpen = ref(false);
+const createCompanyDialogOpen = ref(false)
 const createCompany = () => {
-    createCompanyForm.post(route("company.store"), {
-        onSuccess: () => { 
+    createCompanyForm.post(route('company.store'), {
+        onSuccess: () => {
             createCompanyDialogOpen.value = false
-            createCompanyForm.reset();
+            createCompanyForm.reset()
         },
-        onError: (error) => { 
-            if(error) {
-                validationErrors.value = { ... error }
+        onError: (error) => {
+            if (error) {
+                validationErrors.value = { ...error }
             }
         },
-    });
-};
+    })
+}
 
 const isSnackbar = ref(false)
 </script>
 
 <template>
-    <v-btn
-        color="info"
-        variant="flat"
-        @click="createCompanyDialogOpen = true"
-    >
+    <v-btn color="info" variant="flat" @click="createCompanyDialogOpen = true">
         企業登録
     </v-btn>
     <FormDialog
@@ -56,7 +52,11 @@ const isSnackbar = ref(false)
                                 icon="mdi-information"
                             >
                                 登録企業の情報は、国税庁法人番号公表サイトから取得し、正式なものを登録するようにしてください。
-                                <a href="https://www.houjin-bangou.nta.go.jp/" target="_blank">https://www.houjin-bangou.nta.go.jp/</a>
+                                <a
+                                    href="https://www.houjin-bangou.nta.go.jp/"
+                                    target="_blank"
+                                    >https://www.houjin-bangou.nta.go.jp/</a
+                                >
                             </v-alert>
                         </v-col>
                     </v-row>

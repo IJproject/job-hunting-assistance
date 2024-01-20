@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import QuestionAndAnswerWrapper from "@/Components/common/surfaces/QuestionAndAnswerWrapper.vue";
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import QuestionAndAnswerWrapper from '@/Components/common/surfaces/QuestionAndAnswerWrapper.vue'
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
-import { aboutUserQuestions } from "@/constants";
+import { aboutUserQuestions } from '@/constants'
 
 const props = defineProps({
     userQa: Object,
@@ -17,21 +17,21 @@ const updateUserQaForm = useForm({
     about_user_quetion_state: props.userQa.about_user_quetion_state,
     answer: props.userQa.answer,
 })
-const updateUserQaDialogOpen = ref(false);
+const updateUserQaDialogOpen = ref(false)
 
 const updateUserQa = () => {
     updateUserQaForm.post(route('user.user_qa.store'), {
         onSuccess: () => {
-            updateUserQaDialogOpen.value = false;
+            updateUserQaDialogOpen.value = false
         },
         onError: (error) => {
-            console.log(error);
-        }
+            console.log(error)
+        },
     })
 }
 const deleteUserQa = () => {
-    if(confirm("本当に削除しますか？")) {
-        console.log("削除");
+    if (confirm('本当に削除しますか？')) {
+        console.log('削除')
     }
 }
 </script>
@@ -39,7 +39,6 @@ const deleteUserQa = () => {
 <template>
     <QuestionAndAnswerWrapper>
         <template #question>
-            
             <!-- 横幅がsm以上でこれを表示 -->
             <v-row class="d-none d-sm-flex">
                 <v-col class="align-self-center overflow-hidden">
@@ -93,7 +92,6 @@ const deleteUserQa = () => {
             <v-sheet class="d-sm-none">
                 {{ aboutUserQuestions[userQa.about_user_quetion_state] }}
             </v-sheet>
-            
         </template>
         <template #answer>
             <v-row class="py-2">
@@ -112,10 +110,12 @@ const deleteUserQa = () => {
             <v-form>
                 <v-row>
                     <v-col cols="auto" class="align-self-center mb-3">
-                        {{ aboutUserQuestions[userQa.about_user_quetion_state] }}
+                        {{
+                            aboutUserQuestions[userQa.about_user_quetion_state]
+                        }}
                     </v-col>
                 </v-row>
-                
+
                 <v-textarea
                     label="回答"
                     v-model="updateUserQaForm.answer"

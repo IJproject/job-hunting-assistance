@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref, watch } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
-import SnackBar from "@/Components/common/feedbacks/SnackBar.vue";
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
+import SnackBar from '@/Components/common/feedbacks/SnackBar.vue'
 
 const props = defineProps({
     company: Object,
-});
-const validationErrors = ref({});
+})
+const validationErrors = ref({})
 
 const updateCompanyForm = useForm({
     id: props.company.id,
@@ -17,53 +17,53 @@ const updateCompanyForm = useForm({
     hp_url: props.company.hp_url,
     location: props.company.location,
     state: 'update_company',
-});
+})
 
 const newApplicantCompanyForm = useForm({
     company_id: props.company.id,
-    state: 'make_applicant_company'
-});
+    state: 'make_applicant_company',
+})
 
-const updateCompanyDialogOpen = ref(false);
+const updateCompanyDialogOpen = ref(false)
 
 const updateCompany = () => {
-    updateCompanyForm.post(route("company.store"), {
+    updateCompanyForm.post(route('company.store'), {
         onSuccess: () => {
-            updateCompanyDialogOpen.value = false;
-            isSnackbar.value = true;
+            updateCompanyDialogOpen.value = false
+            isSnackbar.value = true
         },
         onError: (error) => {
             if (error) {
-                validationErrors.value = { ...error };
+                validationErrors.value = { ...error }
             }
         },
-    });
-};
+    })
+}
 
-const isSnackbar = ref(false);
+const isSnackbar = ref(false)
 
 watch(isSnackbar, (newVal) => {
-    console.log("newval", newVal)
-});
+    console.log('newval', newVal)
+})
 
 const actionItems = [
     {
         id: 1,
-        label: "選考中企業に追加",
+        label: '選考中企業に追加',
         function: () => {
-            if(confirm("本当に追加しますか？")) {
-                newApplicantCompanyForm.post(route("company.store"))
+            if (confirm('本当に追加しますか？')) {
+                newApplicantCompanyForm.post(route('company.store'))
             }
         },
     },
     {
         id: 2,
-        label: "企業情報の編集",
+        label: '企業情報の編集',
         function: () => {
-            updateCompanyDialogOpen.value = true;
+            updateCompanyDialogOpen.value = true
         },
     },
-];
+]
 </script>
 
 <template>
@@ -123,7 +123,11 @@ const actionItems = [
                                 icon="mdi-information"
                             >
                                 登録企業の情報は、国税庁法人番号公表サイトから取得し、正式なものを登録するようにしてください。
-                                <a href="https://www.houjin-bangou.nta.go.jp/" target="_blank">https://www.houjin-bangou.nta.go.jp/</a>
+                                <a
+                                    href="https://www.houjin-bangou.nta.go.jp/"
+                                    target="_blank"
+                                    >https://www.houjin-bangou.nta.go.jp/</a
+                                >
                             </v-alert>
                         </v-col>
                     </v-row>

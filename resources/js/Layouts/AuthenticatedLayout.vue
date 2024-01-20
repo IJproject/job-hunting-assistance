@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import axios from "axios";
-import { Inertia } from "@inertiajs/inertia";
+import { ref } from 'vue'
+import axios from 'axios'
+import { Inertia } from '@inertiajs/inertia'
 
 const navigationItems = [
     {
         id: '1',
         title: 'ホーム',
         icon: 'mdi-account',
-        url: '/user'
+        url: '/user',
     },
     {
         id: '2',
         title: '企業一覧',
         icon: 'mdi-office-building',
-        url: '/company'
+        url: '/company',
     },
     {
         id: '3',
         title: 'ブログ',
         icon: 'mdi-post-outline',
-        url: '/blog'
+        url: '/blog',
     },
 ]
 
@@ -30,36 +30,31 @@ const navigationLogout = {
     icon: 'mdi-logout',
 }
 
-const drawer = ref(false);
+const drawer = ref(false)
 
 const logout = () => {
-    axios.post(route('logout'))
+    axios
+        .post(route('logout'))
         .then(() => {
             Inertia.visit(route('login'))
         })
-        .catch(error => {
+        .catch((error) => {
             console.log('Logout failed:', error)
-        });
+        })
 }
 </script>
 
 <template>
     <v-app>
-
         <v-app-bar color="info">
-            <v-app-bar-nav-icon 
-                variant="text"
-                @click.stop="drawer = !drawer">
+            <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer">
             </v-app-bar-nav-icon>
             <template v-slot:append>
                 <span class="mr-2">{{ $page.props.auth.user.name }}</span>
             </template>
         </v-app-bar>
-            
-        <v-navigation-drawer
-            v-model="drawer"
-            temporary
-        >
+
+        <v-navigation-drawer v-model="drawer" temporary>
             <v-list density="compact" nav>
                 <v-list-item
                     v-for="item in navigationItems"

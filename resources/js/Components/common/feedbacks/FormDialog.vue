@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch } from 'vue'
 
 const props = defineProps({
     dialogOpen: Boolean,
     title: String,
-});
-const emit = defineEmits(["update:dialogOpen"]);
+})
+const emit = defineEmits(['update:dialogOpen'])
 
-const isOpen = ref(props.dialogOpen);
+const isOpen = ref(props.dialogOpen)
 
 watch(
     () => props.dialogOpen,
     (newVal) => {
-        isOpen.value = newVal;
+        isOpen.value = newVal
     }
-);
+)
 
 const updateDialogOpen = (newVal) => {
-    isOpen.value = newVal;
-    emit("update:dialogOpen", newVal);
-};
+    isOpen.value = newVal
+    emit('update:dialogOpen', newVal)
+}
 </script>
 
 <template>

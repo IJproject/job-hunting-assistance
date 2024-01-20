@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
 const props = defineProps({
     isSnackbar: Boolean,
-});
+})
 
-const emit = defineEmits(["update:isSnackbar"]);
+const emit = defineEmits(['update:isSnackbar'])
 
-const isSnackbar = ref(props.isSnackbar);
+const isSnackbar = ref(props.isSnackbar)
 
 const updateIsSnackbar = (newVal) => {
-    isSnackbar.value = newVal;
-    console.log("newval", newVal)
-    emit("update:isSnackbar", newVal);
-};
-
+    isSnackbar.value = newVal
+    console.log('newval', newVal)
+    emit('update:isSnackbar', newVal)
+}
 </script>
 
 <template>

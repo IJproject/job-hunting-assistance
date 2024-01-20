@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { aboutCompanyQuestions } from "@/constants";
+import { aboutCompanyQuestions } from '@/constants'
 </script>
 
 <template>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
-import { selectionSteps } from "@/constants";
-import { changeObjectForVSelect } from "@/functions";
+import { selectionSteps } from '@/constants'
+import { changeObjectForVSelect } from '@/functions'
 
 const props = defineProps({
     applicantCompanyId: Number,
-});
+})
 
 const createSelectionForm = useForm({
     applicant_company_id: props.applicantCompanyId,
@@ -18,20 +18,22 @@ const createSelectionForm = useForm({
     time: null,
     interviewer: null,
     memo: null,
-});
-const createSelectionDialogOpen = ref(false);
+})
+const createSelectionDialogOpen = ref(false)
 const createSelection = () => {
-    createSelectionForm.selection_step_state = Number(createSelectionForm.selection_step_state)
+    createSelectionForm.selection_step_state = Number(
+        createSelectionForm.selection_step_state
+    )
     createSelectionForm.post(route('user.applicant_company.selection.store'), {
         onSuccess: () => {
-            createSelectionDialogOpen.value = false;
-            createSelectionForm.reset();
+            createSelectionDialogOpen.value = false
+            createSelectionForm.reset()
         },
         onError: (error) => {
-            console.log(error);
-        }
+            console.log(error)
+        },
     })
-};
+}
 </script>
 
 <template>

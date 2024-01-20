@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { useForm } from "@inertiajs/vue3";
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
     search_word: String,
-});
+})
 
 const searchCompanyForm = useForm({
     search_word: props.search_word,
-});
+})
 
 const searchCompany = () => {
-    searchCompanyForm.get(route("company.index"));
-};
+    searchCompanyForm.get(route('company.index'))
+}
 </script>
 
 <template>

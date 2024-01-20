@@ -1,4 +1,4 @@
-import { Config, RouteParam, RouteParams, Router } from "ziggy-js";
+import { Config, RouteParam, RouteParams, Router } from 'ziggy-js'
 
 declare global {
     declare function route(
@@ -6,17 +6,17 @@ declare global {
         params?: RouteParamsWithQueryOverload | RouteParam,
         absolute?: boolean,
         config?: Config
-    ): Router;
+    ): Router
 
     declare function route(
         name: string,
         params?: RouteParamsWithQueryOverload | RouteParam,
         absolute?: boolean,
         config?: Config
-    ): string;
-    declare const Ziggy: any;
+    ): string
+    declare const Ziggy: any
 }
-declare module "vue" {
+declare module 'vue' {
     interface ComponentCustomProperties {
         route: ((
             name?: undefined,
@@ -29,6 +29,6 @@ declare module "vue" {
                 params?: RouteParamsWithQueryOverload | RouteParam,
                 absolute?: boolean,
                 config?: Config
-            ) => string);
+            ) => string)
     }
 }

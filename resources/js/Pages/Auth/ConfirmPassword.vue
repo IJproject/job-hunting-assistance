@@ -1,28 +1,36 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue'
+import { Head, useForm } from '@inertiajs/vue3'
 
 // import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 const form = useForm({
     password: '',
-});
+})
 
-const visible = ref(false);
+const visible = ref(false)
 
 const submit = () => {
     form.post(route('password.confirm'), {
         onFinish: () => form.reset(),
-    });
-};
+    })
+}
 </script>
 
 <template>
     <GuestLayout>
         <Head title="Confirm Password" />
-        <v-sheet max-width="100%" height="100vh" class="d-flex justify-center align-center">
-            <v-card class="mx-auto my-auto" min-width="375" max-width="500" elevation="16">
-
+        <v-sheet
+            max-width="100%"
+            height="100vh"
+            class="d-flex justify-center align-center"
+        >
+            <v-card
+                class="mx-auto my-auto"
+                min-width="375"
+                max-width="500"
+                elevation="16"
+            >
                 <div class="mb-4 text-sm text-gray-600">
                     パスワードの確認を行います。続行するにはパスワードを入力してください。
                 </div>
@@ -55,6 +63,5 @@ const submit = () => {
                 </v-form>
             </v-card>
         </v-sheet>
-        
     </GuestLayout>
 </template>

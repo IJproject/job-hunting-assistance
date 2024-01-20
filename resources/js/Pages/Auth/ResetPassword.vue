@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue'
+import { Head, useForm } from '@inertiajs/vue3'
 
 // import GuestLayout from '@/Layouts/GuestLayout.vue';
 
@@ -13,31 +13,40 @@ const props = defineProps({
         type: String,
         required: true,
     },
-});
+})
 
-const visible = ref(false);
-const visible_confirmation = ref(false);
+const visible = ref(false)
+const visible_confirmation = ref(false)
 
 const form = useForm({
     token: props.token,
     email: props.email,
     password: '',
     password_confirmation: '',
-});
+})
 
 const submit = () => {
     form.post(route('password.store'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
-    });
-};
+    })
+}
 </script>
 
 <template>
     <GuestLayout>
         <Head title="Reset Password" />
 
-        <v-sheet max-width="100%" height="100vh" class="d-flex justify-center align-center">
-            <v-card class="mx-auto my-auto" min-width="375" max-width="500" elevation="16">
+        <v-sheet
+            max-width="100%"
+            height="100vh"
+            class="d-flex justify-center align-center"
+        >
+            <v-card
+                class="mx-auto my-auto"
+                min-width="375"
+                max-width="500"
+                elevation="16"
+            >
                 <v-form @submit.prevent="submit">
                     <v-text-field
                         v-model="form.email"
@@ -64,8 +73,12 @@ const submit = () => {
                         required
                         color="info"
                         variant="outlined"
-                        :append-inner-icon="visible_confirmation ? 'mdi-eye' : 'mdi-eye-off'"
-                        @click:append-inner="visible_confirmation = !visible_confirmation"
+                        :append-inner-icon="
+                            visible_confirmation ? 'mdi-eye' : 'mdi-eye-off'
+                        "
+                        @click:append-inner="
+                            visible_confirmation = !visible_confirmation
+                        "
                     ></v-text-field>
                     <v-row>
                         <v-spacer></v-spacer>

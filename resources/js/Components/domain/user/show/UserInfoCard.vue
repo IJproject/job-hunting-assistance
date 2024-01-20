@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
 const props = defineProps({
     authUser: Object,
@@ -14,23 +14,23 @@ const updateUserForm = useForm({
     current_password: null,
     password: null,
     password_confirmation: null,
-});
+})
 
-const updateUserDialogOpen = ref(false);
+const updateUserDialogOpen = ref(false)
 
 const updateUser = () => {
-    updateUserForm.put(route("user.update", props.authUser.id), {
+    updateUserForm.put(route('user.update', props.authUser.id), {
         onSuccess: () => {
-            updateUserDialogOpen.value = false;
-            updateUserForm.current_password = null;
-            updateUserForm.password = null;
-            updateUserForm.password_confirmation = null;
+            updateUserDialogOpen.value = false
+            updateUserForm.current_password = null
+            updateUserForm.password = null
+            updateUserForm.password_confirmation = null
         },
         onError: (error) => {
             console.log(error)
         },
     })
-};
+}
 </script>
 
 <template>
@@ -112,9 +112,7 @@ const updateUser = () => {
                 color="info"
                 >キャンセル</v-btn
             >
-            <v-btn @click="updateUser" variant="flat" color="info"
-                >更新</v-btn
-            >
+            <v-btn @click="updateUser" variant="flat" color="info">更新</v-btn>
         </template>
     </FormDialog>
 </template>

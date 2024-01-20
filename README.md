@@ -1,6 +1,6 @@
 ## 就活マスターくん
 
-[簡易的な仕様書](https://docs.google.com/spreadsheets/d/1ipORPAk0xfJ4tmbIRVpkdpzZZPQWhMQMVK75dDDESas/edit#gid=682386544)　(修正してないので実際のものとは違う箇所があります)
+[簡易的な仕様書](https://docs.google.com/spreadsheets/d/1ipORPAk0xfJ4tmbIRVpkdpzZZPQWhMQMVK75dDDESas/edit#gid=682386544)　(修正してないので実際のものとは違う箇所が多くあります)
 
 ### アプリ概要
 
@@ -8,8 +8,8 @@
 
 ### 技術スタック
 
-frontend: Vue(TypeScript), Vuetify
+frontend: Vue, Vuetify, TypeScript, Vue-Test-Utils, Jest, StoryBook
 
-backend: Laravel
+backend: Laravel, Inertia, PHPUnit
 
-infra: AWS-EC2, MySQL, Vite
+infra: AWS(EC2, Route53), MySQL, Vite

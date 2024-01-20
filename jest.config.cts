@@ -1,26 +1,24 @@
 module.exports = {
-  // Vueファイルを処理するためのトランスフォーマー
-  transform: {
-    ".*\\.(vue)$": "@vue/vue3-jest",
-    "^.+\\.ts$": "babel-jest"
-  },
-  
-  // テストファイルが存在するディレクトリ
-  testMatch: [
-    "<rootDir>/resources/js/Test/**/*.test.ts",
-  ],
+    // Vueファイルを処理するためのトランスフォーマー
+    transform: {
+        '.*\\.(vue)$': '@vue/vue3-jest',
+        '^.+\\.ts$': 'babel-jest',
+    },
 
-  // テスト中に無視するファイルやディレクトリ
-  testPathIgnorePatterns: ["/node_modules/"],
+    // テストファイルが存在するディレクトリ
+    testMatch: ['<rootDir>/resources/js/Test/**/*.test.ts'],
 
-  // モジュール名のエイリアス設定
-  // moduleNameMapper: {
-  //   "^@/(.*)$": "<rootDir>/resources/ts/$1"
-  // },
+    // テスト中に無視するファイルやディレクトリ
+    testPathIgnorePatterns: ['/node_modules/'],
 
-  // Jestが環境をセットアップするためのファイル
-  // setupFiles: ["<rootDir>/jest.setup.js"],
+    // モジュール名のエイリアス設定
+    // moduleNameMapper: {
+    //   "^@/(.*)$": "<rootDir>/resources/ts/$1"
+    // },
 
-  // スナップショットのシリアライザ
-  // snapshotSerializers: ["jest-serializer-vue"]
+    // Jestが環境をセットアップするためのファイル
+    // setupFiles: ["<rootDir>/jest.setup.js"],
+
+    // スナップショットのシリアライザ
+    // snapshotSerializers: ["jest-serializer-vue"]
 };

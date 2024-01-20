@@ -5,7 +5,7 @@
     margin-bottom: 20px;
 }
 
-.outlined-date-picker input[type="date"] {
+.outlined-date-picker input[type='date'] {
     border: none; /* 入力フィールドのボーダーを無効化 */
     outline: none; /* アウトラインを無効化 */
     width: 100%; /* 幅を親要素に合わせる */

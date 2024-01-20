@@ -1,46 +1,49 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
-import { aboutUserQuestions } from "@/constants";
-import { changeObjectForVSelect, removeAlreadyExistQa } from "@/functions";
+import { aboutUserQuestions } from '@/constants'
+import { changeObjectForVSelect, removeAlreadyExistQa } from '@/functions'
 
 const props = defineProps({
     alreadyExistQaNumber: Array,
     authUserId: Number,
-});
+})
 
-const qaList = removeAlreadyExistQa(props.alreadyExistQaNumber, aboutUserQuestions)
+const qaList = removeAlreadyExistQa(
+    props.alreadyExistQaNumber,
+    aboutUserQuestions
+)
 
 const createUserQaForm = useForm({
     user_id: props.authUserId,
     about_user_quetion_state: null,
     answer: null,
-});
-const createUserQaDialogOpen = ref(false);
+})
+const createUserQaDialogOpen = ref(false)
 const createUserQa = () => {
-    if(!props.alreadyExistQaNumber.includes(Number(createUserQaForm.about_user_quetion_state))){
+    if (
+        !props.alreadyExistQaNumber.includes(
+            Number(createUserQaForm.about_user_quetion_state)
+        )
+    ) {
         createUserQaForm.post(route('user.user_qa.store'), {
             onSuccess: () => {
-                createUserQaDialogOpen.value = false;
-                createUserQaForm.reset();
+                createUserQaDialogOpen.value = false
+                createUserQaForm.reset()
             },
             onError: (error) => {
-                console.log(error);
-            }
+                console.log(error)
+            },
         })
-    } 
-};
+    }
+}
 </script>
 
 <template>
-    <v-btn
-        color="info"
-        variant="flat"
-        @click="createUserQaDialogOpen = true"
-    >
+    <v-btn color="info" variant="flat" @click="createUserQaDialogOpen = true">
         追加
     </v-btn>
     <FormDialog

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
-import { selectionSteps, selectionStepColors } from "@/constants";
-import { changeObjectForVSelect, getKeyByValue } from "@/functions";
+import { selectionSteps, selectionStepColors } from '@/constants'
+import { changeObjectForVSelect, getKeyByValue } from '@/functions'
 
 const props = defineProps({
     selection: Object,
-    applicantCompanyId: Number
-});
+    applicantCompanyId: Number,
+})
 
 const updateSelectionForm = useForm({
     id: props.selection.id,
@@ -28,23 +28,29 @@ const deleteSelectionForm = useForm({
 })
 
 const updateSelectionDialogOpen = ref(false)
-    
+
 const updateSelection = () => {
-    updateSelectionForm.selection_step_state = getKeyByValue(selectionSteps, updateSelectionForm.selection_step_state)
+    updateSelectionForm.selection_step_state = getKeyByValue(
+        selectionSteps,
+        updateSelectionForm.selection_step_state
+    )
     updateSelectionForm.post(route('user.applicant_company.selection.store'), {
         onSuccess: () => {
-            updateSelectionDialogOpen.value = false;
-            updateSelectionForm.selection_step_state = selectionSteps[updateSelectionForm.selection_step_state]
+            updateSelectionDialogOpen.value = false
+            updateSelectionForm.selection_step_state =
+                selectionSteps[updateSelectionForm.selection_step_state]
         },
         onError: (error) => {
-            console.log(error);
-        }
+            console.log(error)
+        },
     })
 }
 
 const deleteSelection = () => {
-    if(confirm("本当に削除しますか？")) {
-        deleteSelectionForm.delete(route('user.applicant_company.selection.destroy'))
+    if (confirm('本当に削除しますか？')) {
+        deleteSelectionForm.delete(
+            route('user.applicant_company.selection.destroy')
+        )
     }
 }
 </script>
@@ -52,17 +58,25 @@ const deleteSelection = () => {
 <template>
     <v-timeline-item
         :dot-color="selectionStepColors[selection.selection_step_state]"
-    >     
+    >
         <v-card elevation="4" class="pa-4 pt-0">
             <v-card-item>
                 <v-card-title>
                     <v-row row>
                         <v-col cols="auto" class="align-self-center">
-                            <v-chip variant="tonal" :color="selectionStepColors[selection.selection_step_state]">{{
-                                selectionSteps[
-                                    selection.selection_step_state
-                                ]
-                            }}</v-chip>
+                            <v-chip
+                                variant="tonal"
+                                :color="
+                                    selectionStepColors[
+                                        selection.selection_step_state
+                                    ]
+                                "
+                                >{{
+                                    selectionSteps[
+                                        selection.selection_step_state
+                                    ]
+                                }}</v-chip
+                            >
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="auto" class="px-0">

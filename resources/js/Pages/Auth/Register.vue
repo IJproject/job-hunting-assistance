@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue'
+import { Head, useForm } from '@inertiajs/vue3'
 
 // import GuestLayout from '@/Layouts/GuestLayout.vue';
 
@@ -9,31 +9,41 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-});
+})
 
-const visible = ref(false);
-const visible_confirmation = ref(false);
+const visible = ref(false)
+const visible_confirmation = ref(false)
 
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
-    });
-};
+    })
+}
 </script>
 
 <template>
     <GuestLayout>
         <Head title="Register" />
 
-        <v-sheet max-width="100%" height="100vh" class="d-flex justify-center align-center">
-            <v-card class="mx-auto my-auto" min-width="375" max-width="500" elevation="16">
+        <v-sheet
+            max-width="100%"
+            height="100vh"
+            class="d-flex justify-center align-center"
+        >
+            <v-card
+                class="mx-auto my-auto"
+                min-width="375"
+                max-width="500"
+                elevation="16"
+            >
                 <v-card-item class="mt-2 mb-4">
-                    <v-card-title class="text-center text-h5"> 新規登録 </v-card-title>
+                    <v-card-title class="text-center text-h5">
+                        新規登録
+                    </v-card-title>
                 </v-card-item>
 
                 <v-card-text>
                     <v-form @submit.prevent="submit">
-            
                         <v-text-field
                             v-model="form.name"
                             type="text"
@@ -59,7 +69,9 @@ const submit = () => {
                             required
                             color="info"
                             variant="outlined"
-                            :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+                            :append-inner-icon="
+                                visible ? 'mdi-eye' : 'mdi-eye-off'
+                            "
                             @click:append-inner="visible = !visible"
                         ></v-text-field>
 
@@ -70,8 +82,12 @@ const submit = () => {
                             required
                             color="info"
                             variant="outlined"
-                            :append-inner-icon="visible_confirmation ? 'mdi-eye' : 'mdi-eye-off'"
-                            @click:append-inner="visible_confirmation = !visible_confirmation"
+                            :append-inner-icon="
+                                visible_confirmation ? 'mdi-eye' : 'mdi-eye-off'
+                            "
+                            @click:append-inner="
+                                visible_confirmation = !visible_confirmation
+                            "
                         ></v-text-field>
 
                         <v-row>

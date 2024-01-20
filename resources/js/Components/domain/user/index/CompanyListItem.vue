@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { selectionStatuses, selectionStatusColors } from "@/constants";
+import { selectionStatuses, selectionStatusColors } from '@/constants'
 
 defineProps({
     company: Object,
-});
+})
 
 const test = 1
 </script>
@@ -45,7 +45,9 @@ const test = 1
                         <v-btn
                             color="info"
                             variant="flat"
-                            :href="route('user.applicant_company.show', company.id)"
+                            :href="
+                                route('user.applicant_company.show', company.id)
+                            "
                             class="me-4"
                             @click.stop
                         >

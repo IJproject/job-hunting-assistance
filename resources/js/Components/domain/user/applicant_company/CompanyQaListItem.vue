@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3'
 
-import QuestionAndAnswerWrapper from "@/Components/common/surfaces/QuestionAndAnswerWrapper.vue";
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import QuestionAndAnswerWrapper from '@/Components/common/surfaces/QuestionAndAnswerWrapper.vue'
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
-import { aboutCompanyQuestions } from "@/constants";
+import { aboutCompanyQuestions } from '@/constants'
 
 const props = defineProps({
     companyQa: Object,
@@ -23,22 +23,24 @@ const deleteCompanyQaForm = useForm({
     applicant_company_id: props.companyQa.applicant_company_id,
 })
 
-const updateCompanyQaDialogOpen = ref(false);
+const updateCompanyQaDialogOpen = ref(false)
 
 const updateCompanyQa = () => {
     updateCompanyQaForm.post(route('user.applicant_company.company_qa.store'), {
         onSuccess: () => {
-            updateCompanyQaDialogOpen.value = false;
+            updateCompanyQaDialogOpen.value = false
         },
         onError: () => {
-            console.log('error');
-        }
+            console.log('error')
+        },
     })
 }
 
 const deleteCompanyQa = () => {
-    if(confirm("本当に削除しますか？")) {
-        deleteCompanyQaForm.delete(route('user.applicant_company.company_qa.destroy'));
+    if (confirm('本当に削除しますか？')) {
+        deleteCompanyQaForm.delete(
+            route('user.applicant_company.company_qa.destroy')
+        )
     }
 }
 </script>
@@ -46,10 +48,13 @@ const deleteCompanyQa = () => {
 <template>
     <QuestionAndAnswerWrapper>
         <template v-slot:question>
-            
             <v-row>
                 <v-col cols="auto" class="align-self-center">
-                    {{ aboutCompanyQuestions[props.companyQa.about_company_quetion_state] }}
+                    {{
+                        aboutCompanyQuestions[
+                            props.companyQa.about_company_quetion_state
+                        ]
+                    }}
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="auto" class="px-0">
@@ -73,7 +78,6 @@ const deleteCompanyQa = () => {
                     </v-btn>
                 </v-col>
             </v-row>
-            
         </template>
         <template v-slot:answer>
             <v-row class="py-2">
@@ -92,10 +96,14 @@ const deleteCompanyQa = () => {
             <v-form>
                 <v-row>
                     <v-col cols="auto" class="align-self-center mb-3">
-                        {{ aboutCompanyQuestions[props.companyQa.about_company_quetion_state] }}
+                        {{
+                            aboutCompanyQuestions[
+                                props.companyQa.about_company_quetion_state
+                            ]
+                        }}
                     </v-col>
                 </v-row>
-                
+
                 <v-textarea
                     label="回答"
                     v-model="updateCompanyQaForm.answer"

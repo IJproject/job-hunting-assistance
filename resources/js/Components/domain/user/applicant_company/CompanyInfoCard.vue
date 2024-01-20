@@ -1,50 +1,66 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { ref } from 'vue'
+import { Link, useForm } from '@inertiajs/vue3'
 
-import FormDialog from "@/Components/common/feedbacks/FormDialog.vue";
+import FormDialog from '@/Components/common/feedbacks/FormDialog.vue'
 
-import { industries, selectionStatuses, selectionStatusColors } from "@/constants";
-import { changeObjectForVSelect, getKeyByValue } from "@/functions";
+import {
+    industries,
+    selectionStatuses,
+    selectionStatusColors,
+} from '@/constants'
+import { changeObjectForVSelect, getKeyByValue } from '@/functions'
 
 const props = defineProps({
     applicantCompany: Object,
-});
+})
 
-const updateCompanyDialogOpen = ref(false);
+const updateCompanyDialogOpen = ref(false)
 
 // 会社情報の更新(変更がない項目は文字列情報が入っている)
 const updateCompanyForm = useForm({
-    selection_status_state: selectionStatuses[props.applicantCompany.selection_status_state],
+    selection_status_state:
+        selectionStatuses[props.applicantCompany.selection_status_state],
     industry_state: industries[props.applicantCompany.industry_state],
     salary: props.applicantCompany.salary,
     memo: props.applicantCompany.memo,
-});
+})
 
 const deleteCompanyForm = useForm({
     id: props.applicantCompany.id,
 })
 
 const updateCompany = () => {
-    updateCompanyForm.selection_status_state = getKeyByValue(selectionStatuses, updateCompanyForm.selection_status_state);
-    updateCompanyForm.industry_state = getKeyByValue(industries, updateCompanyForm.industry_state);
-    updateCompanyForm.put(route('user.applicant_company.update', props.applicantCompany.id),  {
-        onSuccess: () => {
-            updateCompanyDialogOpen.value = false;
-            updateCompanyForm.selection_status_state = selectionStatuses[updateCompanyForm.selection_status_state];
-            updateCompanyForm.industry_state = industries[updateCompanyForm.industry_state];
-        },
-        onError: () => {
-            console.log('error');
-        },
-    })
-};
+    updateCompanyForm.selection_status_state = getKeyByValue(
+        selectionStatuses,
+        updateCompanyForm.selection_status_state
+    )
+    updateCompanyForm.industry_state = getKeyByValue(
+        industries,
+        updateCompanyForm.industry_state
+    )
+    updateCompanyForm.put(
+        route('user.applicant_company.update', props.applicantCompany.id),
+        {
+            onSuccess: () => {
+                updateCompanyDialogOpen.value = false
+                updateCompanyForm.selection_status_state =
+                    selectionStatuses[updateCompanyForm.selection_status_state]
+                updateCompanyForm.industry_state =
+                    industries[updateCompanyForm.industry_state]
+            },
+            onError: () => {
+                console.log('error')
+            },
+        }
+    )
+}
 
 const deleteCompany = () => {
-    if(confirm("本当に削除しますか？")) {
-        deleteCompanyForm.delete(route('user.applicant_company.destroy'));
+    if (confirm('本当に削除しますか？')) {
+        deleteCompanyForm.delete(route('user.applicant_company.destroy'))
     }
-};
+}
 </script>
 
 <template>
@@ -72,14 +88,21 @@ const deleteCompany = () => {
                             @click="deleteCompany"
                         >
                         </v-btn>
-                    </v-col>     
+                    </v-col>
                 </v-row>
                 <v-row>
                     <v-col cols="auto" class="pt-0">
                         <div>{{ applicantCompany.company.name }}</div>
                     </v-col>
                     <v-col cols="auto" class="me-auto pt-0">
-                        <v-chip variant="tonal" :color="selectionStatusColors[applicantCompany.selection_status_state]">
+                        <v-chip
+                            variant="tonal"
+                            :color="
+                                selectionStatusColors[
+                                    applicantCompany.selection_status_state
+                                ]
+                            "
+                        >
                             {{
                                 selectionStatuses[
                                     applicantCompany.selection_status_state
