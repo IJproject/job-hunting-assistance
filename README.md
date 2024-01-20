@@ -8,7 +8,7 @@
 
 ### 技術スタック
 
-frontend: Vue, Vuetify, TypeScript, Vue-Test-Utils, Jest, StoryBook
+frontend: Vue, Vuetify, TypeScript, ESLint, Vue-Test-Utils, Jest, StoryBook
 
 backend: Laravel, Inertia, PHPUnit
 
