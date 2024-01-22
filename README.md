@@ -9,19 +9,28 @@
   * Figma, StoryBook (デザイン)
   * ESLint, Prettier (コード統一)
   * Vue-Test-Utils, Jest (テスト)
+  * Vite (ビルドツール)
 * バックエンド
   * Laravel, Inertia (実装)
   * PHPUnit (テスト)
 * インフラ
   * AWS(EC2, Route53) (デプロイ)
-  * MySQL, Vite (環境)
+  * MySQL (データベース)
   * Docker (環境構築)
+
+## DB設計
+
+ここにdraw.ioで作成するDB図を掲載予定
+
+## 画面設計
+
+ここにFigmaで作成する画面設計の図を掲載予定
 
 ## 基本的な開発フロー
 
 1. Figmaで画面のデザインをする。PC用とモバイル用の２種類を用意する。
 2. StoryBookに共通化したいデザインのカタログを作成しておく。
 3. 機能の実装と、vue-test-utilsとPHPUnitへのテストコードの記述をする。
-4. コードフォーマットとテストが完了し次第、Git上にプッシュする。
+4. コードフォーマットとテストが完了し次第、Git上にプッシュする。(GithubActionsで自動化の予定)
 
 [簡易的な仕様書](https://docs.google.com/spreadsheets/d/1ipORPAk0xfJ4tmbIRVpkdpzZZPQWhMQMVK75dDDESas/edit#gid=682386544)　(修正してないので実際のものとは違う箇所が多くあります)
