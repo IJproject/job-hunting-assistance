@@ -22,7 +22,7 @@
 
 ## DB設計
 
-![ER図](https://github.com/IJproject/job-hunting-assistance/assets/113161429/a2d067ec-fea1-4962-a734-ad933f2bfe33)
+![ER図](https://github.com/IJproject/job-hunting-assistance/assets/113161429/ae39d914-e515-4dc7-a9d1-c71d986b3f9b)
 
 ## 画面設計
 
