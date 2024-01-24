@@ -28,25 +28,25 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
-    Route::get('/user/info/{user}', [UserController::class, 'show'])->name('user.show');
-    Route::put('/user/info/{user}', [UserController::class, 'update'])->name('user.update');
+    // User関連のページ
+    Route::post('/user/user_company/selection', [UserController::class, 'user_company_selection_store'])->name('selection.store');
+    Route::delete('/user/user_company/selection/{user_company_selection}', [UserController::class, 'user_company_selection_destroy'])->name('selection.destroy');
+
+    Route::post('/user/user_company/user_company_qa', [UserController::class, 'user_company_qa_store'])->name('company_qa.store');
+    Route::delete('/user/user_company/user_company_qa/{user_company_qa}', [UserController::class, 'user_company_qa_destroy'])->name('company_qa.destroy');
     
-    Route::get('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_show'])->name('user.applicant_company.show');
-    Route::put('/user/applicant_company/{applicant_company}', [UserController::class, 'applicant_company_update'])->name('user.applicant_company.update');
-    Route::delete('/user/applicant_company/delete', [UserController::class, 'applicant_company_destroy'])->name('user.applicant_company.destroy');
+    Route::get('/user/user_company/{user_company}', [UserController::class, 'user_company_show'])->name('user_company.show');
+    Route::put('/user/user_company/{user_company}', [UserController::class, 'user_company_update'])->name('user_company.update');
+    Route::delete('/user/user_company/{user_company}', [UserController::class, 'user_company_destroy'])->name('user_company.destroy');
 
-    Route::post('/user/applicant_company/selection', [UserController::class, 'selection_store'])->name('user.applicant_company.selection.store');
-    Route::delete('/user/applicant_company/selection/delete', [UserController::class, 'selection_destroy'])->name('user.applicant_company.selection.destroy');
-
-    Route::post('/user/applicant_company/qa', [UserController::class, 'company_qa_store'])->name('user.applicant_company.company_qa.store');
-    Route::delete('/user/applicant_company/qa/delete', [UserController::class, 'company_qa_destroy'])->name('user.applicant_company.company_qa.destroy');
-
-    Route::post('/user/user_qa', [UserController::class, 'user_qa_store'])->name('user.user_qa.store');
-    Route::delete('/user/user_qa/delete', [UserController::class, 'user_qa_destroy'])->name('user.user_qa.destroy');
-
-    Route::get('/company', [CompanyController::class, 'index'])->name('company.index');
-    Route::post('/company', [CompanyController::class, 'store'])->name('company.store');
+    Route::post('/user/user_qa', [UserController::class, 'user_qa_store'])->name('user_qa.store');
+    Route::delete('/user/user_qa/{user_qa}', [UserController::class, 'user_qa_destroy'])->name('user_qa.destroy');
+    
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
+    
+    // Blog関連のページ
 });
 
 require __DIR__.'/auth.php';
