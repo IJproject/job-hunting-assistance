@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_qas', function (Blueprint $table) {
+        Schema::create('user_company_qas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->integer('question_number');
             $table->text('answer');
             $table->date('answer_date');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_qas');
+        Schema::dropIfExists('user_company_qas');
     }
 };

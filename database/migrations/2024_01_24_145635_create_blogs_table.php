@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applicant_company_qas', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('about_company_quetion_state');
-            $table->text('answer');
-            $table->date('answer_date');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('company_number');
+            $table->string('title');
+            $table->text('content');
+            $table->integer('tag_number');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applicant_company_qas');
+        Schema::dropIfExists('blogs');
     }
 };

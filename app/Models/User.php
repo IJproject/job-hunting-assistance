@@ -44,9 +44,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function applicant_companies(): HasMany
+    public function user_companies(): HasMany
     {
-        return $this->hasMany(ApplicantCompany::class);
+        return $this->hasMany(UserCompany::class);
     }
 
     public function user_qas(): HasMany

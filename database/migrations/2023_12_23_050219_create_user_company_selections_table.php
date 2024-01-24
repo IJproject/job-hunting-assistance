@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('selections', function (Blueprint $table) {
+        Schema::create('user_company_selections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('selection_step_state');
+            $table->foreignId('user_company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('step_number');
             $table->date('date')->nullable();
             $table->string('time')->nullable();
             $table->string('interviewer')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('selections');
+        Schema::dropIfExists('user_company_selections');
     }
 };

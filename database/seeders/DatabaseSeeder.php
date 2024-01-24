@@ -20,11 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UserSeeder::class,
-            CompanySeeder::class,
-            ApplicantCompanySeeder::class,
-            SelectionSeeder::class,
+            UserCompanySeeder::class,
+            UserCompanySelectionSeeder::class,
             UserQaSeeder::class,
-            ApplicantCompanyQaSeeder::class,
+            UserCompanyQaSeeder::class,
         ]);
     }
 }

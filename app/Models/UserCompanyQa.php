@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class UserQa extends Model
+class UserCompanyQa extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'user_company_id',
         'question_number',
         'answer',
-        'answer_date',  
+        'answer_date',
     ];
-
-    public function user(): BelongsTo
+    
+    public function user_company(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserCompany::class);
     }
 }
