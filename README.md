@@ -36,3 +36,9 @@
 4. コードフォーマットとテストが完了し次第、Git上にプッシュする。(GithubActionsで自動化の予定)
 
 [簡易的な仕様書](https://docs.google.com/spreadsheets/d/1ipORPAk0xfJ4tmbIRVpkdpzZZPQWhMQMVK75dDDESas/edit#gid=682386544)　(修正してないので実際のものとは違う箇所が多くあります)
+
+## 一言メモ
+
+アプリケーションの特色上、SEO対策などもしないといけないからVueではなくNuxtやNextなどのSSRに変更した方がいいのだろうけどね、、、ま、いっか。
+
+現状の構成は割とSSRを意識した構成(バックエンドとの通信の際に積極的にAPIを使用する)にしているから替えたいと思った時に変えます。
