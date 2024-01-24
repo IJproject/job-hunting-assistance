@@ -16,7 +16,7 @@
 * インフラ
   * AWS(EC2, Route53) (デプロイ)
   * MySQL (データベース)
-  * Docker (環境構築)
+  * Docker (環境構築) -> ローカル環境がdarwin、docker上がLinuxとそれぞれ違うOSでうまく構築できなかったため保留
 * その他
   * 国税庁 - 法人番号システムWeb-API
 
