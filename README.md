@@ -20,7 +20,7 @@
 
 ## DB設計
 
-ここにdraw.ioで作成するDB図を掲載予定
+![er](https://github.com/IJproject/job-hunting-assistance/assets/113161429/833378f4-6d3e-48b9-ad9d-1c0999b1bd2d)
 
 ## 画面設計
 
