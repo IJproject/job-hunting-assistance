@@ -9,21 +9,18 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
-use App\Models\Company;
-use App\Models\ApplicantCompany;
-use App\Models\Selection;
+use App\Models\UserCompany;
+use App\Models\UserCompanySelection;
 use App\Models\UserQa;
-use App\Models\ApplicantCompanyQa;
+use App\Models\UserCompanyQa;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $auth_user = Auth::user()->only(['id', 'name', 'email']);
-        $applicant_companies = ApplicantCompany::where('user_id', $auth_user['id'])->with('company')->get();
+        $user_companies = UserCompany::where('user_id', Auth::user()->id)->select(['id', 'company_name', 'status_number', 'memo'])->get();
         return Inertia::render('User/Index', [
-            'authUser' => $auth_user,
-            'applicantCompanies' => $applicant_companies,
+            'user_companies' => $user_companies,
         ]);
     }
 

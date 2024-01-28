@@ -10,12 +10,22 @@ export interface GetUser {
 
 export interface GetUserCompany {
     id: number;
+    company_name: string;
     company_number: string;
     job: string;
     status_number: number;
     memo: string;
     salary: string;
+    created_at: date;
+    updated_at: date;
     user_company_selection?: UserCompanySelection;
+};
+
+export interface GetUserCompanyList {
+    id: number;
+    company_name: string;
+    status_number: number;
+    memo: string;
 };
 
 export interface GetUserCompanySelection {

@@ -17,6 +17,8 @@ export default defineConfig({
                 },
             },
         }),
-        vuetify(),
+        vuetify({
+            autoImport: false,
+        }),
     ],
 });

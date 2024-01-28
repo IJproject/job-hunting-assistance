@@ -7,7 +7,7 @@
         "lint": "eslint --ext .vue,.ts resources/js/",
         "test": "jest",
         "build": "vite build",
-        "storybook": "storybook dev -p 6006",
+        "storybook": "storybook dev -p 6006 -c resources/js/Stories/.storybook",
         "build-storybook": "storybook build"
     },
     "devDependencies": {
