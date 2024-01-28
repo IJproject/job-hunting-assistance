@@ -8,26 +8,48 @@ const meta: Meta<typeof FormDialog> = {
 	component: FormDialog,
 	tags: ['autodocs'],
 	argTypes: {
-        dialogOpen: {
-            control: {
-                type: 'select',
-            },
-            options: ['true', 'false'],
-        },
-	    title: {
-            control: {
-                type: 'text',
-            },
-        }
+		dialogOpen: {
+            description: 'ダイアログの開閉状況',
+			control: {
+				type: 'select',
+			},
+			options: ['true', 'false'],
+		},
+		title: {
+            description: 'ダイアログのタイトル',
+			control: {
+				type: 'text',
+			},
+		},
 	},
+    render: (args) => ({
+		components: { FormDialog },
+		args: {
+			dialogOpen: true,
+			title: 'Sample Title',
+		},
+		setup() {
+			return { args };
+		},
+		template: `
+            <FormDialog v-bind="args">
+                <template #main>
+                    <div>Sample Main</div>
+                </template>
+                <template #actions>
+                    <div>Sample Actions</div>
+                </template>
+            </FormDialog>
+        `,
+	}),
 };
 export default meta;
 
 type StoryType = StoryObj<typeof FormDialog>;
 
-export const Normal: StoryType = {
+export const Sample: StoryType = {
     args: {
         dialogOpen: true,
-        title: 'Title',
-    },
+        title: 'Sample Title',
+    }
 };

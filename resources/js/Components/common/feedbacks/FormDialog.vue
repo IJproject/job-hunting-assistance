@@ -27,7 +27,7 @@ watch(
 	}
 );
 
-const updateDialogOpen = (newVal) => {
+const updateDialogOpen = (newVal: boolean) => {
 	isOpen.value = newVal;
 	emit('update:dialogOpen', newVal);
 };

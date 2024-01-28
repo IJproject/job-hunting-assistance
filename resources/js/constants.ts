@@ -1,4 +1,4 @@
-export const industries = {
+export const INDUSTRIES = {
 	1: '穀物栽培',
 	2: '野菜・果物栽培',
 	3: '畜産業',
@@ -81,7 +81,7 @@ export const industries = {
 	100: 'その他',
 };
 
-export const selectionStatuses: {
+export const SELECTION_STATUSES: {
     [key: number]: string;
 } = {
 	1: '検討中',
@@ -93,7 +93,7 @@ export const selectionStatuses: {
 	100: 'その他',
 };
 
-export const selectionStatusColors: {
+export const SELECTION_STATUS_COLORS: {
     [key: number]: string;
 } = {
 	1: 'primary',
@@ -105,7 +105,7 @@ export const selectionStatusColors: {
 	100: 'gray',
 };
 
-export const selectionSteps = {
+export const SELECTION_STEPS = {
 	1: 'カジュアル面談',
 	2: '面談',
 	3: '書類選考',
@@ -123,7 +123,7 @@ export const selectionSteps = {
 	100: 'その他',
 };
 
-export const selectionStepColors = {
+export const SELECTION_STEP_COLORS = {
 	1: 'primary-lighten',
 	2: 'primary',
 	3: 'primary-darken',
@@ -141,7 +141,7 @@ export const selectionStepColors = {
 	100: 'gray',
 };
 
-export const aboutUserQuestions = {
+export const USER_QUESTIONS = {
 	1: '自己紹介',
 	2: '自己PR',
 	3: '自身の長所と短所',
@@ -151,7 +151,7 @@ export const aboutUserQuestions = {
 	7: 'これまでで一番苦労したこと',
 };
 
-export const aboutCompanyQuestions = {
+export const USER_COMPANY_QUESTIONS = {
 	1: '会社概要',
 	2: '志望動機',
 	3: '将来像',

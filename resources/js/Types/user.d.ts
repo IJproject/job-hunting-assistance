@@ -21,7 +21,7 @@ export interface GetUserCompany {
     user_company_selection?: UserCompanySelection;
 };
 
-export interface GetUserCompanyList {
+export interface GetUserCompanyListItem {
     id: number;
     company_name: string;
     status_number: number;
